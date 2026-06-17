@@ -1,0 +1,134 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .lead{font-size:13px;color:rgba(255,255,255,.74);margin-top:6px;display:inline-flex;align-items:center;gap:6px}
+.card{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+
+.sectitle{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);margin-bottom:12px;letter-spacing:.01em}
+.sectitle::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.sectitle svg{color:var(--teal)}
+.sectitle small{font-size:12px;font-weight:500;color:var(--faint);letter-spacing:0}
+
+/* contractor filter chips */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:7px;min-height:40px;font-size:13px;font-weight:600;color:var(--sub);background:#fff;border:1px solid #e2e8ed;border-radius:999px;padding:0 16px;white-space:nowrap;box-shadow:0 1px 2px rgba(15,23,42,.03)}
+.chip b{font-weight:700;font-size:11px;min-width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:#f1f5f9;color:#64748b}
+.chip.on{color:#fff;background:var(--teal-ink);border-color:var(--teal-ink)}
+.chip.on b{background:rgba(255,255,255,.24);color:#fff}
+
+/* view toggle */
+.vtog{display:inline-flex;gap:4px;background:#fff;border:1px solid #e2e8ed;border-radius:var(--rctrl);padding:4px;box-shadow:0 1px 2px rgba(15,23,42,.03)}
+.vtog .v{display:inline-flex;align-items:center;justify-content:center;min-height:34px;font-size:13px;font-weight:600;color:var(--sub);padding:0 18px;border-radius:7px}
+.vtog .v.on{background:var(--teal-ink);color:#fff}
+
+/* calendar */
+.cal{overflow:hidden;padding:0}
+.cal .dow,.cal .week{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal .dow span{font-size:12px;font-weight:600;color:var(--faint);text-align:center;padding:9px 4px;border-bottom:1px solid #eef1f4}
+.cal .week{border-bottom:1px solid #eef1f4}.cal .week:last-child{border-bottom:0}
+.cell{border-left:1px solid #eef1f4;min-height:90px;padding:5px 4px;display:flex;flex-direction:column;gap:3px}
+.cell:first-child{border-left:0}
+.cell .dnum{font-size:13px;font-weight:600;color:var(--ink);text-align:right;padding:0 3px}
+.cell.muted .dnum{color:#cbd5d1}
+.cell .today{margin-left:auto;width:24px;height:24px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:var(--teal-ink);color:#fff;font-weight:700;font-size:13px}
+.ev{font-size:11px;font-weight:600;border-radius:5px;padding:3px 6px;line-height:1.35;border-left:3px solid;overflow-wrap:break-word}
+.ev .code{white-space:nowrap}
+.ev.green{background:#ecfdf5;color:#065f46;border-color:#10b981}
+.ev.amber{background:#fffbeb;color:#92400e;border-color:#f59e0b}
+
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}
+  .chips{gap:6px}.chip{padding:0 13px;font-size:12px;min-height:40px}
+  .vtog{width:100%}.vtog .v{flex:1}
+  .cal .dow span{font-size:11px;padding:7px 1px}
+  .cell{min-height:64px;padding:4px 2px;gap:2px}
+  .cell .dnum{font-size:12px;padding:0 1px}
+  .cell .today{width:20px;height:20px;font-size:11px}
+  .ev{font-size:9px;padding:2px 3px;border-left-width:2px}
+}
+</style></head><body><div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">PM 工作台</div>
+    <h1>排程管理</h1>
+    <div class="lead"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>拖拉調整工序日期，點擊查看詳情</div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 3H2l8 9.46V19l4 2v-8.54L22 3z"/></svg>工班篩選<small>依工班過濾排程工序</small></div>
+    <div class="chips">
+      <span class="chip on">全部</span>
+      <span class="chip">林森木作工程行 <b class="num">2</b></span>
+      <span class="chip">許記水電行 <b class="num">1</b></span>
+      <span class="chip">蔡師泥作班 <b class="num">1</b></span>
+      <span class="chip">鄭氏木作工坊 <b class="num">1</b></span>
+    </div>
+  </div>
+
+  <div class="vtog">
+    <span class="v on">月曆</span>
+    <span class="v">週曆</span>
+  </div>
+
+  <div class="card cal">
+    <div class="dow"><span>週一</span><span>週二</span><span>週三</span><span>週四</span><span>週五</span><span>週六</span><span>週日</span></div>
+
+    <div class="week">
+      <div class="cell"><span class="dnum num">1</span><span class="ev green"><span class="code num">ZJ-2026-002</span> 水電配管</span></div>
+      <div class="cell"><span class="dnum num">2</span></div>
+      <div class="cell"><span class="dnum num">3</span></div>
+      <div class="cell"><span class="dnum num">4</span><span class="ev green"><span class="code num">ZJ-2026-014</span> 木作工程</span></div>
+      <div class="cell"><span class="dnum num">5</span></div>
+      <div class="cell"><span class="dnum num">6</span></div>
+      <div class="cell"><span class="dnum num">7</span><span class="ev amber"><span class="code num">ZJ-2026-002</span> 泥作砌牆/防水</span></div>
+    </div>
+
+    <div class="week">
+      <div class="cell"><span class="dnum num">8</span><span class="ev green"><span class="code num">ZJ-2026-014</span> 木作工程</span><span class="ev amber"><span class="code num">ZJ-2026-002</span> 泥作砌牆/防水</span></div>
+      <div class="cell"><span class="dnum num">9</span></div>
+      <div class="cell"><span class="dnum num">10</span></div>
+      <div class="cell"><span class="dnum num">11</span></div>
+      <div class="cell"><span class="dnum num">12</span></div>
+      <div class="cell"><span class="dnum num">13</span></div>
+      <div class="cell"><span class="dnum num">14</span></div>
+    </div>
+
+    <div class="week">
+      <div class="cell"><span class="dnum num">15</span><span class="ev amber"><span class="code num">ZJ-2026-002</span> 泥作砌牆/防水</span></div>
+      <div class="cell"><span class="dnum num">16</span><span class="ev amber"><span class="code num">ZJ-2026-015</span> 木作工程</span></div>
+      <div class="cell"><span class="today num">17</span></div>
+      <div class="cell"><span class="dnum num">18</span></div>
+      <div class="cell"><span class="dnum num">19</span></div>
+      <div class="cell"><span class="dnum num">20</span></div>
+      <div class="cell"><span class="dnum num">21</span><span class="ev amber"><span class="code num">ZJ-2026-002</span> 木作天花/櫃體</span></div>
+    </div>
+
+    <div class="week">
+      <div class="cell"><span class="dnum num">22</span><span class="ev amber"><span class="code num">ZJ-2026-015</span> 木作工程</span><span class="ev amber"><span class="code num">ZJ-2026-002</span> 木作天花/櫃體</span></div>
+      <div class="cell"><span class="dnum num">23</span></div>
+      <div class="cell"><span class="dnum num">24</span></div>
+      <div class="cell"><span class="dnum num">25</span></div>
+      <div class="cell"><span class="dnum num">26</span></div>
+      <div class="cell"><span class="dnum num">27</span></div>
+      <div class="cell"><span class="dnum num">28</span></div>
+    </div>
+
+    <div class="week">
+      <div class="cell"><span class="dnum num">29</span><span class="ev amber"><span class="code num">ZJ-2026-002</span> 木作天花/櫃體</span></div>
+      <div class="cell"><span class="dnum num">30</span></div>
+      <div class="cell muted"><span class="dnum num">1</span></div>
+      <div class="cell muted"><span class="dnum num">2</span></div>
+      <div class="cell muted"><span class="dnum num">3</span></div>
+      <div class="cell muted"><span class="dnum num">4</span></div>
+      <div class="cell muted"><span class="dnum num">5</span></div>
+    </div>
+  </div>
+
+</div></body></html>

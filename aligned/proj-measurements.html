@@ -1,0 +1,70 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>現場丈量</title><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:#e2e8ed;--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .top{display:flex;align-items:flex-start;gap:12px}
+.hero .eyebrow{font-size:12px;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .head{margin-right:auto}
+.hero .desc{font-size:13px;color:rgba(255,255,255,.74);margin-top:6px;max-width:560px}
+.hero .add{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--teal-ink);font-weight:700;font-size:13px;border-radius:var(--rctrl);padding:9px 14px;min-height:40px}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--sub);margin:0 2px;min-height:40px}
+.card{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.cov-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.cov-top .t{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);letter-spacing:.01em}
+.cov-top .t::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.cov-top .r{font-size:13px;font-weight:700;color:var(--faint);white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--teal-ink);background:#fff;border:1px solid var(--cardline);border-radius:999px;padding:6px 13px;white-space:nowrap}
+.chip .dot{width:11px;height:11px;border-radius:999px;border:1.6px solid #b6c0c8;flex:0 0 auto}
+.empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:46px 20px}
+.empty .ico{color:#94a3b8}
+.empty .title{font-size:15px;font-weight:600;color:var(--sub);margin-top:14px}
+.empty .hint{font-size:13px;color:var(--faint);margin-top:6px}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero .top{flex-wrap:wrap}.hero .head{margin-right:auto}
+  .hero .add{order:9;flex:1 1 100%;justify-content:center;margin-top:4px}
+  .cov-top{flex-wrap:wrap}
+  .empty{padding:36px 14px}
+}
+</style></head><body><div class="wrap">
+
+  <span class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>返回</span>
+
+  <div class="hero">
+    <div class="top">
+      <div class="head">
+        <div class="eyebrow">丈量</div>
+        <h1>現場丈量</h1>
+        <div class="desc">PM/設計師到場丈量後登錄各空間實際尺寸 + 上傳照片</div>
+      </div>
+      <span class="add"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增丈量</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="cov-top"><span class="t">客戶需求空間覆蓋率</span><span class="r num">0/7 已丈量</span></div>
+    <div class="chips">
+      <span class="chip"><span class="dot"></span>客廳</span>
+      <span class="chip"><span class="dot"></span>廚房</span>
+      <span class="chip"><span class="dot"></span>主臥</span>
+      <span class="chip"><span class="dot"></span>書房</span>
+      <span class="chip"><span class="dot"></span>客衛浴</span>
+      <span class="chip"><span class="dot"></span>主臥 / 衛浴</span>
+      <span class="chip"><span class="dot"></span>主臥 / 更衣室</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="empty">
+      <svg class="ico" width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m21.3 15.3-6 6a1 1 0 0 1-1.4 0L2.7 10a1 1 0 0 1 0-1.4l6-6a1 1 0 0 1 1.4 0l11.2 11.3a1 1 0 0 1 0 1.4Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+      <div class="title">尚無丈量紀錄</div>
+      <div class="hint">到場丈量後，點右上「新增丈量」登錄各空間尺寸</div>
+    </div>
+  </div>
+
+</div></body></html>

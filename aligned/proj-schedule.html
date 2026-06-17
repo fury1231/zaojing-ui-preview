@@ -1,0 +1,109 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--teal-ink);margin:0 2px;min-height:40px}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);display:flex;align-items:center;gap:6px}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .desc{font-size:13px;color:rgba(255,255,255,.78);margin-top:8px;max-width:640px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.stat{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:16px 18px}
+.stat .k{font-size:11.5px;font-weight:600;color:var(--sub);letter-spacing:.02em}
+.stat .v{font-size:24px;font-weight:700;color:var(--teal-ink);margin-top:5px}
+.sectitle{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);letter-spacing:.01em;margin:4px 2px 2px}
+.sectitle::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.sectitle svg{color:var(--teal)}
+.colhead{display:grid;grid-template-columns:46px 1fr 130px 130px 64px 56px;gap:12px;align-items:center;padding:2px 22px;font-size:11.5px;font-weight:600;color:var(--sub);letter-spacing:.02em}
+.colhead .r{text-align:right}.colhead .c{text-align:center}
+.scard{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:16px 22px;display:grid;grid-template-columns:46px 1fr 130px 130px 64px 56px;gap:12px;align-items:center}
+.ord{display:flex;flex-direction:column;align-items:center;gap:5px;color:var(--teal)}
+.ord button{display:inline-flex;align-items:center;justify-content:center;width:30px;height:24px;border:1px solid #e2e8ed;background:#fff;border-radius:7px;color:var(--teal);cursor:pointer;transition:border-color .15s,background .15s}
+.ord button:hover{background:var(--tint);border-color:#a7d8d8}
+.proc .nm{font-size:15px;font-weight:600;color:var(--ink)}
+.proc .meta{font-size:12px;color:var(--sub);margin-top:4px}
+.proc .meta .seg{white-space:nowrap}.proc .meta .d{color:#cbd5d1;margin:0 5px}
+.dt{width:100%;font-size:13.5px;color:#1f2d38;font-weight:500;background:#fff;border:1px solid #e2e8ed;border-radius:9px;padding:0 12px;height:40px;font-family:inherit;transition:border-color .15s,box-shadow .15s}
+.dt:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,92,109,.12)}
+.par{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;font-weight:600;color:var(--sub);min-height:40px;cursor:pointer}
+.par input{width:16px;height:16px;accent-color:var(--teal)}
+.op{display:flex;justify-content:flex-end}
+.op .x{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #e2e8ed;background:#fff;border-radius:9px;color:#b42318;cursor:pointer;transition:border-color .15s,background .15s}
+.op .x:hover{background:#fdf1f0;border-color:#f0c4bf}
+.dtlbl{display:none;font-size:11.5px;color:var(--sub);font-weight:600;letter-spacing:.02em;margin-bottom:4px}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero h1{font-size:20px}
+  .stats{grid-template-columns:1fr 1fr 1fr;gap:8px}.stat{padding:13px 11px}.stat .v{font-size:20px}
+  .colhead{display:none}
+  .scard{grid-template-columns:36px 1fr;gap:12px 12px;padding:16px 18px}
+  .proc{grid-column:2}
+  .scard .field-dates{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .dtlbl{display:block}
+  .scard .field-par{grid-column:1 / -1;justify-content:flex-start}
+  .scard .field-op{grid-column:1 / -1;justify-content:flex-start}
+}
+</style></head><body><div class="wrap">
+
+  <a class="back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>返回</a>
+
+  <div class="hero">
+    <div class="eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>專案排程</div>
+    <h1>工序排程</h1>
+    <div class="desc">發包單帶出工序；PM 排序並設定計畫起訖。平行工序勾選後可同時施工。</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="k">工序總數</div><div class="v num">2</div></div>
+    <div class="stat"><div class="k">預計工期</div><div class="v">—</div></div>
+    <div class="stat"><div class="k">衝突警示</div><div class="v num">0</div></div>
+  </div>
+
+  <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>工序排程</div>
+
+  <div class="colhead">
+    <span class="c">順序</span>
+    <span>工序</span>
+    <span>計畫開始</span>
+    <span>計畫結束</span>
+    <span class="c">平行</span>
+    <span class="r">操作</span>
+  </div>
+
+  <div class="scard">
+    <div class="ord">
+      <button aria-label="上移"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m18 15-6-6-6 6"/></svg></button>
+      <button aria-label="下移"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="proc">
+      <div class="nm">木作工程（木作工程／林森木作工程行）</div>
+      <div class="meta"><span class="seg">木作工程</span><span class="d">·</span><span class="seg">已發包</span></div>
+    </div>
+    <div class="field-dates" style="display:contents">
+      <div><span class="dtlbl">計畫開始</span><input class="dt" type="date" aria-label="計畫開始"></div>
+      <div><span class="dtlbl">計畫結束</span><input class="dt" type="date" aria-label="計畫結束"></div>
+    </div>
+    <label class="par field-par"><input type="checkbox">平行</label>
+    <div class="op field-op"><button class="x" aria-label="移除"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button></div>
+  </div>
+
+  <div class="scard">
+    <div class="ord">
+      <button aria-label="上移"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m18 15-6-6-6 6"/></svg></button>
+      <button aria-label="下移"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 9 6 6 6-6"/></svg></button>
+    </div>
+    <div class="proc">
+      <div class="nm">木作工程（木作工程／鄭氏木作工坊）</div>
+      <div class="meta"><span class="seg">木作工程</span><span class="d">·</span><span class="seg">已發包</span></div>
+    </div>
+    <div class="field-dates" style="display:contents">
+      <div><span class="dtlbl">計畫開始</span><input class="dt" type="date" aria-label="計畫開始"></div>
+      <div><span class="dtlbl">計畫結束</span><input class="dt" type="date" aria-label="計畫結束"></div>
+    </div>
+    <label class="par field-par"><input type="checkbox">平行</label>
+    <div class="op field-op"><button class="x" aria-label="移除"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m2 0v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/></svg></button></div>
+  </div>
+
+</div></body></html>

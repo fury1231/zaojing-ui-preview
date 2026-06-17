@@ -1,0 +1,61 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>收款計畫</title><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--sub);margin:0 2px;min-height:40px}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .top{display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.hero .ttl{margin-right:auto}
+.hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .desc{font-size:13px;color:rgba(255,255,255,.78);margin-top:6px}
+.hero .desc .frag{white-space:nowrap}
+.hero .gen{display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--teal-ink);font-weight:700;font-size:13px;border-radius:var(--rctrl);padding:0 16px;height:40px;flex:0 0 auto;border:1px solid rgba(255,255,255,.4)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.scard{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:18px 20px}
+.scard .k{display:flex;align-items:center;gap:9px;font-size:11.5px;font-weight:600;color:var(--sub);letter-spacing:.02em}
+.scard .k::before{content:"";width:3px;height:14px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.scard .v{font-size:24px;font-weight:700;color:var(--teal-ink);margin-top:8px}
+.scard .v.green{color:#0f766e}
+.scard .sub{font-size:12px;color:var(--faint);font-weight:600;margin-top:5px}
+.empty{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:48px 22px;text-align:center}
+.empty .icon{color:var(--teal);margin-bottom:14px;opacity:.55}
+.empty .t1{font-size:16px;font-weight:600;color:var(--teal-ink)}
+.empty .t2{font-size:13px;color:var(--faint);margin-top:6px}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero .top{flex-wrap:wrap}.hero .ttl{margin-right:auto;flex:1 1 100%}
+  .hero .gen{order:3;flex:1 1 100%;justify-content:center;margin-top:4px}
+  .stats{grid-template-columns:1fr}
+  .empty{padding:36px 16px}
+}
+</style></head><body><div class="wrap">
+
+  <span class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>返回</span>
+
+  <div class="hero">
+    <div class="top">
+      <div class="ttl">
+        <div class="eyebrow">收付款</div>
+        <h1>收款計畫</h1>
+        <div class="desc"><span class="frag">業主 60/30/10 三期收款追蹤</span> · <span class="frag">現階段 業主報價單</span></div>
+      </div>
+      <span class="gen"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v4"/><path d="M19 17v4"/><path d="M3 5h4"/><path d="M17 19h4"/><path d="M12 12 6.5 6.5"/><path d="m12 12 5.5 5.5"/></svg>生成 60/30/10</span>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="scard"><div class="k">業主報價總額</div><div class="v num">$1,099,318</div></div>
+    <div class="scard"><div class="k">已收款</div><div class="v green num">$0</div><div class="sub"><span class="num">0%</span> 已收</div></div>
+    <div class="scard"><div class="k">未收款</div><div class="v num">$0</div></div>
+  </div>
+
+  <div class="empty">
+    <div class="icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/></svg></div>
+    <div class="t1">尚未建立收款計畫</div>
+    <div class="t2">上方點「生成 60/30/10」依業主報價總額自動產生</div>
+  </div>
+
+</div></body></html>

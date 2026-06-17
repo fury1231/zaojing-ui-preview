@@ -1,0 +1,110 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero .top{display:flex;align-items:center;gap:12px;margin-top:4px}
+.hero h1{font-size:22px;font-weight:600;margin-right:auto}
+.hero .search{flex:0 0 auto;width:230px;display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:var(--rctrl);min-height:40px;padding:8px 12px;color:rgba(255,255,255,.78);font-size:13px}
+.hero .add{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--teal-ink);font-weight:700;font-size:13px;border-radius:var(--rctrl);min-height:40px;padding:9px 14px}
+.htabs{display:flex;gap:8px;margin-top:14px}
+.htabs .t{flex:1;justify-content:center;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:rgba(255,255,255,.74);min-height:42px;padding:10px 14px;border:1px solid transparent;border-radius:10px}
+.htabs .t b{font-weight:700;font-size:12px;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:rgba(255,255,255,.16);color:#fff}
+.htabs .t.on{color:#fff;background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.24)}
+.htabs .t.on b{background:rgba(255,255,255,.26)}
+.seclabel{display:flex;align-items:center;gap:9px;justify-content:space-between;margin:6px 2px 0}
+.seclabel .l{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);letter-spacing:.01em}
+.seclabel .l::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.seclabel .l small{font-size:12px;font-weight:500;color:var(--faint);margin-left:2px}
+.seclabel .r{font-size:12px;color:var(--faint);font-weight:600;flex:0 0 auto;white-space:nowrap}
+.pcard{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.pc-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pc-top .code{font-size:12px;color:var(--faint);font-weight:600}
+.pc-top .chip{font-size:11.5px;font-weight:700;border-radius:999px;padding:3px 10px;background:#fff;border:1px solid #a7d8d8;color:var(--teal-ink)}
+.pc-top .chip.faint{background:#fff;border-color:#e2e8ed;color:#64748b}
+.pc-top .amt{margin-left:auto;font-size:16px;font-weight:700;color:var(--teal-ink)}
+.pc-top .enter{display:inline-flex;align-items:center;gap:5px;background:var(--teal-ink);color:#fff;font-size:12px;font-weight:700;border-radius:var(--rctrl);min-height:40px;padding:9px 13px}
+.pc-name{font-size:18px;font-weight:600;margin-top:8px;color:var(--ink)}
+.fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 18px;margin-top:10px}
+.fields .f{font-size:13px;min-width:0}.fields .f .k{font-size:11.5px;color:var(--sub);font-weight:600;letter-spacing:.02em;display:block;margin-bottom:1px}.fields .f .v{color:var(--ink);font-weight:600}
+.actrow{display:flex;align-items:center;gap:16px;margin-top:12px;flex-wrap:wrap}
+.acts{display:flex;gap:8px;flex:0 0 auto}
+.acts .a{font-size:12px;font-weight:600;border-radius:999px;min-height:34px;padding:6px 12px;display:inline-flex;align-items:center;background:#fff;border:1px solid #e2e8ed;color:var(--sub)}
+.acts .a1{color:var(--teal-ink);border-color:#a7d8d8}
+.acts .a2{color:var(--teal-ink);background:var(--tint);border-color:#a7d8d8}
+.acts .a3{color:var(--teal-ink);border-color:#a7d8d8}
+.prog{display:flex;align-items:center;gap:12px;flex:1 1 340px}
+.prog .metaline{flex:1;min-width:0;font-size:12px;color:var(--sub);word-break:keep-all}
+.metaline .seg{white-space:nowrap}.metaline .d{color:#cbd5d1;margin:0 2px}
+.prog .bar{flex:0 0 130px;height:6px;border-radius:999px;background:#eef1f3;overflow:hidden}.prog .bar>i{display:block;height:100%;background:linear-gradient(90deg,#10b981,#0f766e)}
+.prog .pct{font-size:13px;font-weight:800;color:var(--teal-ink);flex:0 0 auto}
+.subs{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid #eef1f4;flex-wrap:wrap}
+.sub{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;color:var(--sub);background:#fff;border:1px solid #e2e8ed;border-radius:999px;padding:5px 11px}
+.sub .st{font-size:11px;border-radius:999px;padding:1px 7px;font-weight:700}
+.sub .st.draft{background:#f1f5f9;color:#475569}.sub .st.amber{background:#fef3c7;color:#92400e}.sub .st.none{background:#f1f5f9;color:#64748b}
+.ico{color:var(--teal)}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero .top{flex-wrap:wrap}.hero .search{width:100%;order:3}.hero h1{margin-right:auto}
+  .htabs{gap:6px}.htabs .t{padding:8px 4px;font-size:12px;flex-direction:column;gap:3px;border-radius:8px;min-height:48px}
+  .pcard{padding:16px}
+  .pc-top{flex-wrap:wrap;gap:8px}.pc-top .code{order:2}.pc-top .amt{margin-left:auto}.pc-top .enter{order:9;flex:1 1 100%;justify-content:center;margin-top:2px}
+  .fields{grid-template-columns:1fr 1fr}.fields .f[style]{grid-column:1 / -1 !important}
+  .actrow{align-items:stretch}.acts{flex-wrap:wrap}.prog{flex:1 1 100%}
+  .subs{flex-direction:column;align-items:flex-start}
+}
+</style></head><body><div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">PM 專案管理</div>
+    <div class="top">
+      <h1>專案總覽</h1>
+      <span class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>搜尋客戶名稱、編號或地址</span>
+      <span class="add"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>客戶建檔</span>
+    </div>
+    <div class="htabs">
+      <span class="t on">洽談報價<b class="num">4</b></span>
+      <span class="t">簽約發包<b class="num">0</b></span>
+      <span class="t">施工中<b class="num">2</b></span>
+      <span class="t">驗收交付<b class="num">1</b></span>
+    </div>
+  </div>
+
+  <div class="seclabel"><div class="l">洽談報價專案<small>需求、業主報價、工程報價</small></div><div class="r">4 件 · 最新建檔優先</div></div>
+
+  <div class="pcard">
+    <div class="pc-top"><span class="chip">舊屋翻新</span><span class="code num">ZJ-2026-011</span><span class="amt num">$1,099,318</span><span class="enter">進入專案 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m9 18 6-6-6-6"/></svg></span></div>
+    <div class="pc-name">文山靜巷華廈</div>
+    <div class="fields"><div class="f"><span class="k">客戶姓名</span><span class="v">林柏翰</span></div><div class="f"><span class="k">電話</span><span class="v num">0918-527-346</span></div><div class="f"><span class="k">房屋類型</span><span class="v">中古屋</span></div><div class="f"><span class="k">建案 / 社區</span><span class="v">文山靜巷華廈</span></div><div class="f" style="grid-column:span 2"><span class="k">施工地址</span><span class="v">台北市文山區木柵路二段88巷12號6樓</span></div></div>
+    <div class="actrow"><div class="acts"><span class="a a1">需求編輯</span><span class="a a2">業主報價</span><span class="a a3">工程報價</span></div><div class="prog"><span class="metaline"><span class="seg">施工進度</span><span class="d">·</span><span class="seg">施工準備</span><span class="d">·</span><span class="seg">打卡 0 筆</span><span class="d">·</span><span class="seg">驗收通過 0/0</span></span><div class="bar"><i style="width:12%"></i></div><span class="pct num">12%</span></div></div>
+    <div class="subs"><span class="sub"><svg class=ico width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>業主報價合約 v1 <span class="st draft">草稿</span></span><span class="sub"><svg class=ico width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>工程報價合約 2/2 <span class="st amber">議價中</span></span></div>
+  </div>
+
+  <div class="pcard">
+    <div class="pc-top"><span class="chip faint">待補</span><span class="code num">ZJ-2026-012</span><span class="amt num">$184,000</span><span class="enter">進入專案 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m9 18 6-6-6-6"/></svg></span></div>
+    <div class="pc-name">大安信義路辦公室</div>
+    <div class="fields"><div class="f"><span class="k">客戶姓名</span><span class="v">周庭安</span></div><div class="f"><span class="k">電話</span><span class="v num">0922-715-806</span></div><div class="f"><span class="k">房屋類型</span><span class="v">未填</span></div><div class="f"><span class="k">建案 / 社區</span><span class="v">大安信義路辦公室</span></div><div class="f" style="grid-column:span 2"><span class="k">施工地址</span><span class="v">台北市大安區信義路三段156號12樓</span></div></div>
+    <div class="actrow"><div class="acts"><span class="a a1">需求編輯</span><span class="a a2">業主報價</span><span class="a a3">工程報價</span></div><div class="prog"><span class="metaline"><span class="seg">施工進度</span><span class="d">·</span><span class="seg">施工準備</span><span class="d">·</span><span class="seg">打卡 0 筆</span><span class="d">·</span><span class="seg">驗收通過 0/0</span></span><div class="bar"><i style="width:12%"></i></div><span class="pct num">12%</span></div></div>
+    <div class="subs"><span class="sub">業主報價合約 <span class="st none">未建立</span></span><span class="sub">工程報價合約 1/1 <span class="st amber">議價中</span></span></div>
+  </div>
+
+  <div class="pcard">
+    <div class="pc-top"><span class="chip faint">待補</span><span class="code num">ZJ-2026-001</span><span class="amt" style="color:var(--faint)">待補</span><span class="enter">進入專案 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m9 18 6-6-6-6"/></svg></span></div>
+    <div class="pc-name">王大明</div>
+    <div class="fields"><div class="f"><span class="k">客戶姓名</span><span class="v">王大明</span></div><div class="f"><span class="k">電話</span><span class="v num">0933111222</span></div><div class="f"><span class="k">房屋類型</span><span class="v">未填</span></div><div class="f"><span class="k">建案 / 社區</span><span class="v">富邦天空樹</span></div><div class="f" style="grid-column:span 2"><span class="k">施工地址</span><span class="v">台中市西屯區市政路386號12樓</span></div></div>
+    <div class="actrow"><div class="acts"><span class="a a1">需求編輯</span><span class="a a2">業主報價</span><span class="a a3">工程報價</span></div><div class="prog"><span class="metaline"><span class="seg">施工進度</span><span class="d">·</span><span class="seg">尚未進入施工</span><span class="d">·</span><span class="seg">打卡 0 筆</span><span class="d">·</span><span class="seg">驗收通過 0/0</span></span><div class="bar"><i style="width:0%"></i></div><span class="pct num">0%</span></div></div>
+    <div class="subs"><span class="sub">業主報價合約 <span class="st none">未建立</span></span><span class="sub">工程報價合約 <span class="st none">未建立</span></span></div>
+  </div>
+
+  <div class="pcard">
+    <div class="pc-top"><span class="chip faint">待補</span><span class="code num">ZJ-2026-013</span><span class="amt num">$132,000</span><span class="enter">進入專案 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m9 18 6-6-6-6"/></svg></span></div>
+    <div class="pc-name">松山民生公寓</div>
+    <div class="fields"><div class="f"><span class="k">客戶姓名</span><span class="v">何雅婷</span></div><div class="f"><span class="k">電話</span><span class="v num">0936-188-245</span></div><div class="f"><span class="k">房屋類型</span><span class="v">未填</span></div><div class="f"><span class="k">建案 / 社區</span><span class="v">松山民生公寓</span></div><div class="f" style="grid-column:span 2"><span class="k">施工地址</span><span class="v">台北市松山區民生東路五段27巷8號4樓</span></div></div>
+    <div class="actrow"><div class="acts"><span class="a a1">需求編輯</span><span class="a a2">業主報價</span><span class="a a3">工程報價</span></div><div class="prog"><span class="metaline"><span class="seg">施工進度</span><span class="d">·</span><span class="seg">施工準備</span><span class="d">·</span><span class="seg">打卡 0 筆</span><span class="d">·</span><span class="seg">驗收通過 0/0</span></span><div class="bar"><i style="width:12%"></i></div><span class="pct num">12%</span></div></div>
+    <div class="subs"><span class="sub">業主報價合約 <span class="st none">未建立</span></span><span class="sub">工程報價合約 1/1 <span class="st amber">議價中</span></span></div>
+  </div>
+
+</div></body></html>

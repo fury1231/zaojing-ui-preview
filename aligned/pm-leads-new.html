@@ -1,0 +1,186 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .lead{font-size:13px;color:rgba(255,255,255,.74);margin-top:6px}
+.card{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.sectitle{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);margin-bottom:16px;letter-spacing:.01em}
+.sectitle::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.sectitle svg{color:var(--teal)}
+.subhdr{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 12px;padding-top:16px;border-top:1px solid #eef1f4}
+.subhdr .l{font-size:13px;font-weight:600;color:var(--teal-ink);letter-spacing:.01em}
+.addbtn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--teal-ink);background:var(--tint);border:1px solid #a7d8d8;border-radius:999px;padding:5px 11px}
+/* 對齊優先(像 before):固定 4 等欄,欄界跨列垂直對齊,框填滿格子 */
+.row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 16px}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0;grid-column:span 1}
+.s1{grid-column:span 1}.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}
+.f .k{font-size:11.5px;font-weight:600;color:var(--sub);letter-spacing:.02em}
+.f .k.chk{display:flex;align-items:center;gap:6px}
+.subnote{font-size:11px;color:var(--faint);margin-top:3px}
+.ctrl{width:100%;font-size:13.5px;color:#1f2d38;background:#fff;border:1px solid #e2e8ed;border-radius:9px;padding:0 12px;height:40px;display:flex;align-items:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:border-color .15s,box-shadow .15s}
+.ctrl.ph{color:#aab4bd;font-weight:400}
+.ctrl:not(.ph){font-weight:500}
+.ctrl.sel{justify-content:space-between;gap:6px;color:#aab4bd}
+.ctrl.sel svg{color:#b6c0c8;flex:0 0 auto}
+/* 格局:照 before 一排 6 格 */
+.layout{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.lay{display:flex;align-items:center;justify-content:space-between;gap:6px;background:#fff;border:1px solid #e2e8ed;border-radius:9px;padding:8px 12px}
+.lay .ln{font-size:12px;font-weight:500;color:var(--sub)}
+.lay .lv{font-size:14px;font-weight:700;color:var(--teal-ink)}
+.chkrow{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--sub)}
+.box{width:14px;height:14px;border:1.5px solid var(--cardline);border-radius:3px;flex:0 0 auto}
+.timeblock{display:flex;flex-wrap:wrap;gap:10px 28px}
+.timerow{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;flex:0 0 auto}
+.timerow .lbl{font-size:12px;font-weight:600;color:var(--sub);flex:0 0 auto}
+.timerow .ctrl{width:auto;flex:0 0 92px}
+.timerow .dash{color:var(--faint);flex:0 0 auto}
+.member{border:1px solid var(--cardline);border-radius:12px;padding:12px;margin-top:8px}
+.member .mh{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.member .mh .mt{font-size:13px;font-weight:700;color:var(--teal-ink)}
+.member .mh .self{font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--tint);color:var(--teal-ink)}
+.emptybox{font-size:12px;color:var(--faint);background:#f7f8fa;border:1px dashed var(--cardline);border-radius:var(--rctrl);padding:12px;margin-top:8px}
+.footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:var(--rctrl);padding:9px 16px}
+.btn.ghost{background:#fff;border:1px solid var(--cardline);color:var(--sub)}
+.btn.primary{background:var(--teal-ink);color:#fff}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}.hero{padding:16px}
+  .row{grid-template-columns:repeat(2,1fr)}
+  .s1{grid-column:span 1}
+  .s2,.s3,.s4,.mfull{grid-column:1/-1}
+  .layout{grid-template-columns:repeat(2,1fr)}
+  .footer{flex-direction:column;align-items:stretch}.footer .btn{justify-content:center;width:100%}
+}
+</style></head><body><div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">PM 客戶管理</div>
+    <h1>客戶建檔</h1>
+    <div class="lead">建檔後將自動轉為專案並導向專案頁</div>
+  </div>
+
+  <!-- 業主資訊 -->
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>業主資訊</div>
+    <div class="row">
+      <div class="f s4"><span class="k">專案名稱</span><span class="ctrl ph">例：信義安和全屋定製案</span></div>
+
+      <div class="f s1"><span class="k">客戶姓名</span><span class="ctrl">王大明</span></div>
+      <div class="f s1"><span class="k">性別</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">聯絡電話</span><span class="ctrl num">0933-345-678</span></div>
+      <div class="f s1"><span class="k">LINE ID</span><span class="ctrl ph">line.id</span></div>
+
+      <div class="f s1"><span class="k">裝修類型</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">職業</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">客戶來源</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">介紹人</span><span class="ctrl ph">介紹人姓名</span></div>
+
+      <div class="f s2"><span class="k">E-MAIL 信箱</span><span class="ctrl ph">example@email.com</span></div>
+      <div class="f s2"><span class="k">戶籍地址／聯絡地址</span><span class="ctrl ph">戶籍地址／聯絡地址</span></div>
+
+      <div class="f s3"><span class="k">風格偏好</span><span class="ctrl ph">可填寫多種偏好，也可自行輸入</span></div>
+      <div class="f s1"><span class="k">總預算（元）</span><span class="ctrl num ph">1000000</span></div>
+
+      <div class="f s2"><span class="k">開工日期</span><span class="ctrl ph">mm/dd/yyyy</span></div>
+      <div class="f s2"><span class="k">入住日期</span><span class="ctrl ph">mm/dd/yyyy</span><span class="subnote">可不填，代表可配合完工驗收。</span></div>
+    </div>
+  </div>
+
+  <!-- 房屋資訊 -->
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>房屋資訊</div>
+    <div class="row">
+      <div class="f s1"><span class="k">房屋狀態</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">房屋類型</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">屋齡（年）</span><span class="ctrl num">10</span></div>
+      <div class="f s1"><span class="k">社區／建案名稱</span><span class="ctrl">富邦天空樹</span></div>
+
+      <div class="f s2"><span class="k">施工地址</span><span class="ctrl">台中市西屯區市政路386號12樓</span></div>
+      <div class="f s1"><span class="k">室內坪數</span><span class="ctrl num">30</span></div>
+      <div class="f s1"><span class="k">規劃坪數</span><span class="ctrl num">35</span></div>
+
+      <div class="f s1"><span class="k">棟別</span><span class="ctrl">A棟</span></div>
+      <div class="f s1"><span class="k">居住樓層</span><span class="ctrl num">3</span></div>
+      <div class="f s1"><span class="k">所有樓層</span><span class="ctrl num">12</span></div>
+      <div class="f s1"><span class="k chk"><span class="box"></span>電梯</span><span class="ctrl">無電梯</span></div>
+    </div>
+
+    <!-- 格局 -->
+    <div class="subhdr"><span class="l">格局</span></div>
+    <div class="layout">
+      <div class="lay"><span class="ln">房間</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">衛浴</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">客廳</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">餐廳</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">廚房</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">陽台</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">露台</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">平面車位</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">機械車位</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">獨立車庫</span><span class="lv num">0</span></div>
+    </div>
+
+    <!-- 管委會規定施工時間 -->
+    <div class="subhdr"><span class="l">管委會規定施工時間</span></div>
+    <div class="row">
+      <div class="f s4">
+        <div class="timeblock">
+          <div class="timerow">
+            <span class="lbl">平日</span>
+            <span class="lbl">起</span><span class="ctrl sel num">07:00<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+            <span class="dash">–</span>
+            <span class="lbl">迄</span><span class="ctrl sel num">07:00<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+          </div>
+          <div class="timerow">
+            <span class="lbl">假日</span>
+            <span class="lbl">起</span><span class="ctrl sel num">07:00<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+            <span class="dash">–</span>
+            <span class="lbl">迄</span><span class="ctrl sel num">07:00<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span>
+          </div>
+        </div>
+      </div>
+      <div class="f s4"><span class="k">管委會備註</span><span class="ctrl ph">&nbsp;</span></div>
+    </div>
+  </div>
+
+  <!-- 家庭成員 -->
+  <div class="card">
+    <div class="subhdr" style="margin-top:0;padding-top:0;border-top:none">
+      <span class="sectitle" style="margin-bottom:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>家庭成員</span>
+      <span class="addbtn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增成員</span>
+    </div>
+    <div class="member">
+      <div class="mh"><span class="mt">成員 1</span><span class="self">本人</span></div>
+      <div class="row">
+        <div class="f s1"><span class="k">身分</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        <div class="f s1"><span class="k">性別</span><span class="ctrl sel ph">—<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        <div class="f s1"><span class="k">年齡</span><span class="ctrl ph">&nbsp;</span></div>
+        <div class="f s1"><span class="k">身高 cm</span><span class="ctrl ph">&nbsp;</span></div>
+        <div class="f s2"><span class="k">生活型態</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        <div class="f s2"><span class="k">設計備註</span><span class="ctrl ph">&nbsp;</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 空間設計需求 -->
+  <div class="card">
+    <div class="subhdr" style="margin-top:0;padding-top:0;border-top:none">
+      <span class="sectitle" style="margin-bottom:0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>空間設計需求</span>
+      <span class="addbtn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增空間</span>
+    </div>
+    <div class="emptybox">新增此案需要規劃的空間（客廳、主臥、廚房…），並填寫各空間的設計需求</div>
+  </div>
+
+  <!-- footer -->
+  <div class="card footer">
+    <span class="btn ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>返回</span>
+    <span class="btn ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v6h6"/><path d="M21 17a9 9 0 0 0-9-9 9 9 0 0 0-6 2.3L3 13"/></svg>復原</span>
+    <span class="btn primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>儲存</span>
+  </div>
+
+</div></body></html>

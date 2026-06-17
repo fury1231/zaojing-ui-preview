@@ -1,0 +1,265 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:#e2e8ed;--rcard:16px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:12px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--teal-ink);align-self:flex-start}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .eyebrow{display:flex;align-items:baseline;gap:8px;font-size:12px;font-weight:700;letter-spacing:.18em;color:rgba(255,255,255,.7)}
+.hero .eyebrow b{font-size:15px;letter-spacing:.32em;font-weight:600;color:#fff}
+.hero h1{font-size:22px;font-weight:600;margin-top:6px}
+.stats{display:flex;gap:8px;margin-top:14px}
+.stats .s{flex:1;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:11px 14px}
+.stats .s.on{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.34)}
+.stats .s .k{font-size:12px;font-weight:600;color:rgba(255,255,255,.82)}
+.stats .s .v{font-size:18px;font-weight:700;margin-top:3px;color:#fff}
+.seclabel{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:6px 2px 0}
+.seclabel .l{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);letter-spacing:.01em}
+.seclabel .l::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.seclabel .r{font-size:12px;color:var(--faint);font-weight:600}
+.panel{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:18px 20px}
+.ptabs{display:flex;gap:6px;flex-wrap:wrap}
+.ptab{display:inline-flex;flex-direction:column;align-items:center;gap:2px;font-size:12px;font-weight:600;color:var(--sub);background:#fff;border:1px solid var(--cardline);border-radius:10px;padding:7px 12px;min-width:54px}
+.ptab.on{color:#fff;background:var(--teal);border-color:var(--teal)}
+.ptab .c{font-size:11px;font-weight:700}
+.ptab.on .c{color:rgba(255,255,255,.88)}
+.ptab:not(.on) .c{color:var(--faint)}
+.subtot{text-align:center;font-size:13px;font-weight:600;color:var(--teal-ink);margin:14px 0}
+.subtot .num{font-weight:800}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.toolbar .btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;border-radius:var(--rctrl);min-height:40px;padding:0 14px;border:1px solid var(--cardline);color:var(--sub);background:#fff}
+.toolbar .send{margin-left:auto;background:var(--teal-ink);color:#fff;border-color:var(--teal-ink);font-weight:700}
+.colhint{font-size:11px;color:var(--faint);font-weight:600;margin:4px 2px 0;line-height:1.6}
+.colhint .seg{white-space:nowrap}
+.icard{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:16px 18px}
+.ic-top{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.ic-top .cb{width:18px;height:18px;border:1.6px solid var(--cardline);border-radius:5px;background:#fff;flex:0 0 auto}
+.ic-top .chip{font-size:11px;font-weight:700;border-radius:999px;padding:3px 11px;background:var(--tint);color:var(--teal-ink)}
+.ic-top .space{font-size:13.5px;font-weight:600;color:var(--ink)}
+.ic-top .amt{margin-left:auto;font-size:15px;font-weight:700;color:var(--teal-ink)}
+.fields{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px 20px;margin-top:12px}
+.fields .f{font-size:13.5px;min-width:0}
+.fields .f .k{font-size:11.5px;color:var(--sub);font-weight:600;letter-spacing:.02em;display:block;margin-bottom:2px}
+.fields .f .v{color:var(--ink);font-weight:600;word-break:break-word}
+.fields .f .v.empty{color:#94a3b8;font-weight:500}
+.icrow{display:flex;align-items:center;gap:10px;margin-top:13px;padding-top:13px;border-top:1px solid #eef1f4;flex-wrap:wrap}
+.crew{display:inline-flex;align-items:center;gap:7px}
+.crew .ico{color:var(--teal);flex:0 0 auto}
+.crew .name{font-size:13.5px;font-weight:600;color:var(--ink)}
+.crew .name.none{color:#94a3b8;font-weight:500}
+.crew .st{font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px;background:#fef3c7;color:#92400e;white-space:nowrap}
+.crew .st.hint{background:#f1f5f9;color:#475569}
+.doc{margin-left:auto;display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--sub);border:1px solid var(--cardline);border-radius:999px;min-height:34px;padding:0 12px;white-space:nowrap}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}
+  .stats{flex-direction:column;gap:6px}
+  .ptabs{gap:5px}.ptab{flex:1 1 0;min-width:0;padding:7px 4px}
+  .toolbar .send{margin-left:0;flex:1 1 100%;justify-content:center;order:9}
+  .fields{grid-template-columns:1fr 1fr}
+  .ic-top{flex-wrap:wrap}.ic-top .amt{margin-left:auto}
+  .icrow{align-items:flex-start}.doc{margin-left:0}
+}
+</style></head><body><div class="wrap">
+
+  <a class="back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>返回</a>
+
+  <div class="hero">
+    <div class="eyebrow"><b>造境</b><span>ZAOJING</span></div>
+    <h1>統包成本統計</h1>
+    <div class="stats">
+      <div class="s"><div class="k">業主報價單明細</div><div class="v num">27 筆</div></div>
+      <div class="s on"><div class="k">發包工作台</div><div class="v num">0/27</div></div>
+      <div class="s"><div class="k">詢價追蹤</div><div class="v num">2 份</div></div>
+    </div>
+  </div>
+
+  <div class="seclabel"><div class="l">發包工作台</div><div class="r">已發 0/27</div></div>
+
+  <div class="panel">
+    <div class="ptabs">
+      <span class="ptab on">全部<span class="c num">已發 0/27</span></span>
+      <span class="ptab">拆除<span class="c num">1/1</span></span>
+      <span class="ptab">木工<span class="c num">5/5</span></span>
+      <span class="ptab">水電<span class="c num">5/5</span></span>
+      <span class="ptab">其他<span class="c num">0/3</span></span>
+      <span class="ptab">系統櫃<span class="c num">4/4</span></span>
+      <span class="ptab">泥作<span class="c num">4/4</span></span>
+      <span class="ptab">鋁窗<span class="c num">1/1</span></span>
+      <span class="ptab">衛浴<span class="c num">0/3</span></span>
+      <span class="ptab">燈具<span class="c num">0/1</span></span>
+    </div>
+    <div class="subtot">工程報價小計 <span class="num">$0</span></div>
+    <div class="toolbar">
+      <span class="btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg>設定工班</span>
+      <span class="btn" aria-label="報價單"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg></span>
+      <span class="btn send"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>請勾選要發包的項目</span>
+    </div>
+  </div>
+
+  <div class="colhint"><span class="seg">設定工班</span> · <span class="seg">請勾選要發包的項目</span> · <span class="seg">欄位：發包</span> · <span class="seg">工程分類</span> · <span class="seg">空間</span> · <span class="seg">項目名稱</span> · <span class="seg">規格說明</span> · <span class="seg">備註</span> · <span class="seg">單價</span> · <span class="seg">數量</span> · <span class="seg">單位</span> · <span class="seg">總價</span> · <span class="seg">發包工班</span> · <span class="seg">合約</span></div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">拆除</span><span class="space">客廳</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">蔡師泥作班</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">木工</span><span class="space">客廳</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">林森木作工程行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">木工</span><span class="space">主臥</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">林森木作工程行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">木工</span><span class="space">書房</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">林森木作工程行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">木工</span><span class="space">書房</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">林森木作工程行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">木工</span><span class="space">主臥 / 更衣室</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">林森木作工程行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">水電</span><span class="space">客廳</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">許記水電行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">水電</span><span class="space">廚房</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">許記水電行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">水電</span><span class="space">廚房</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">許記水電行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">水電</span><span class="space">主臥</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">許記水電行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">水電</span><span class="space">主臥 / 衛浴</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">許記水電行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">其他</span><span class="space">客廳</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name none">尚未選工班</span><span class="st hint">勾選後到右上設定</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">其他</span><span class="space">主臥 / 衛浴</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name none">尚未選工班</span><span class="st hint">勾選後到右上設定</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">其他</span><span class="space">主臥 / 更衣室</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name none">尚未選工班</span><span class="st hint">勾選後到右上設定</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">系統櫃</span><span class="space">廚房</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">林森木作工程行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">系統櫃</span><span class="space">主臥</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">林森木作工程行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">系統櫃</span><span class="space">書房</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">林森木作工程行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">系統櫃</span><span class="space">主臥 / 更衣室</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">林森木作工程行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">泥作</span><span class="space">廚房</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">蔡師泥作班</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">泥作</span><span class="space">客衛浴</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">蔡師泥作班</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">泥作</span><span class="space">客衛浴</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">蔡師泥作班</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">泥作</span><span class="space">主臥 / 衛浴</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">蔡師泥作班</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">鋁窗</span><span class="space">書房</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name">林森木作工程行</span><span class="st">尚未發送</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">衛浴</span><span class="space">客衛浴</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name none">尚未選工班</span><span class="st hint">勾選後到右上設定</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">衛浴</span><span class="space">客衛浴</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name none">尚未選工班</span><span class="st hint">勾選後到右上設定</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">衛浴</span><span class="space">主臥 / 衛浴</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name none">尚未選工班</span><span class="st hint">勾選後到右上設定</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+  <div class="icard">
+    <div class="ic-top"><span class="cb"></span><span class="chip">燈具</span><span class="space">主臥 / 更衣室</span><span class="amt num">$0</span></div>
+    <div class="fields"><div class="f"><span class="k">項目名稱</span><span class="v empty">—</span></div><div class="f"><span class="k">規格說明</span><span class="v empty">—</span></div><div class="f"><span class="k">備註</span><span class="v empty">—</span></div><div class="f"><span class="k">單價</span><span class="v num">$0</span></div><div class="f"><span class="k">數量 / 單位</span><span class="v num">1 式</span></div><div class="f"><span class="k">總價</span><span class="v num">$0</span></div></div>
+    <div class="icrow"><span class="crew"><svg class=ico width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg><span class="name none">尚未選工班</span><span class="st hint">勾選後到右上設定</span></span><span class="doc"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>合約</span></div>
+  </div>
+
+</div></body></html>

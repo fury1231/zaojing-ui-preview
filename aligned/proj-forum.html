@@ -1,0 +1,77 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.back{display:inline-flex;align-items:center;gap:7px;min-height:40px;font-size:14px;font-weight:600;color:var(--teal-ink)}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .desc{font-size:13px;color:rgba(255,255,255,.74);margin-top:6px}
+.seclabel{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:6px 2px 2px}
+.seclabel .l{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);letter-spacing:.01em}
+.seclabel .l::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.seclabel .add{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;background:var(--teal-ink);color:#fff;font-weight:700;font-size:13px;border-radius:var(--rctrl);padding:9px 16px;flex:0 0 auto}
+.tcard{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px;display:flex;gap:14px}
+.tcard .avatar{flex:0 0 auto;width:42px;height:42px;border-radius:999px;background:var(--teal-ink);color:#fff;font-size:16px;font-weight:600;display:flex;align-items:center;justify-content:center}
+.tcard .body{flex:1;min-width:0}
+.t-title{font-size:17px;font-weight:600;color:var(--ink)}
+.t-excerpt{font-size:13.5px;color:var(--sub);margin-top:4px}
+.t-meta{display:flex;align-items:center;gap:6px 12px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:var(--faint);font-weight:600}
+.t-meta>span{white-space:nowrap}
+.t-meta .author{color:var(--ink)}
+.t-meta .role{font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--tint);color:var(--teal-ink)}
+.t-meta .reply{display:inline-flex;align-items:center;gap:5px}
+.ico{color:var(--teal)}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero h1{font-size:20px}
+  .seclabel{flex-direction:column;align-items:stretch;gap:8px}
+  .seclabel .add{width:100%}
+  .tcard{padding:16px}.tcard .avatar{width:38px;height:38px;font-size:15px}
+}
+</style></head><body><div class="wrap">
+
+  <a class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 19-7-7 7-7"/></svg>返回</a>
+
+  <div class="hero">
+    <span class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>專案討論</span>
+    <h1>專案討論</h1>
+    <div class="desc">有專案閱讀權限者皆可發主題、回覆。</div>
+  </div>
+
+  <div class="seclabel">
+    <div class="l"><span class="num">2</span> 個主題</div>
+    <span class="add"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>發新主題</span>
+  </div>
+
+  <div class="tcard">
+    <div class="avatar">李</div>
+    <div class="body">
+      <div class="t-title">附件測試_95107</div>
+      <div class="t-excerpt">這則用『上傳圖片』附件,不是貼連結。</div>
+      <div class="t-meta">
+        <span class="author">李建宏</span>
+        <span class="role">PM設計師</span>
+        <span>15 小時前</span>
+        <span class="reply"><svg class=ico width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="num">0</span> 回覆</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tcard">
+    <div class="avatar">李</div>
+    <div class="body">
+      <div class="t-title">電視牆收納加深 5cm（示範54367）</div>
+      <div class="t-excerpt">業主希望電視牆收納加深，麻煩木工班確認工料與工期，謝謝。</div>
+      <div class="t-meta">
+        <span class="author">李建宏</span>
+        <span class="role">PM設計師</span>
+        <span>15 小時前</span>
+        <span class="reply"><svg class=ico width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span class="num">1</span> 回覆</span>
+      </div>
+    </div>
+  </div>
+
+</div></body></html>

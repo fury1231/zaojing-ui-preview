@@ -1,0 +1,102 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:rgba(255,255,255,.78)}
+.hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:12px}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .desc{font-size:13px;color:rgba(255,255,255,.74);margin-top:7px;max-width:640px}
+.seclabel{display:flex;align-items:baseline;justify-content:space-between;margin:6px 2px 0}
+.seclabel .l{font-size:15px;font-weight:600;color:var(--teal-ink);display:inline-flex;align-items:center;gap:9px;letter-spacing:.01em}
+.seclabel .l::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.card{background:#fff;border:1px solid #e2e8ed;border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.sectitle{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);margin-bottom:16px;letter-spacing:.01em}
+.sectitle::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.sectitle svg{color:var(--teal)}
+.form{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:11.5px;font-weight:600;color:var(--sub);letter-spacing:.02em}
+.field label .req{color:#b45309}
+.ctrl{width:100%;font-size:13.5px;color:#1f2d38;background:#fff;border:1px solid #e2e8ed;border-radius:9px;padding:0 12px;height:40px;display:flex;align-items:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:border-color .15s,box-shadow .15s}
+.ctrl.ph{color:#aab4bd;font-weight:400}
+.ctrl:not(.ph){font-weight:500}
+select.ctrl{color:#1f2d38;font-weight:500;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23b6c0c8' stroke-width='2.4'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px}
+.checks{grid-column:1 / -1;display:flex;align-items:center;gap:22px;margin-top:-2px}
+.checks .chk{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:600;color:var(--ink)}
+.checks .chk .box{width:16px;height:16px;border:1.5px solid var(--cardline);border-radius:4px;background:#fff;flex:0 0 auto}
+.submitrow{grid-column:1 / -1;margin-top:2px}
+.btn{display:inline-flex;align-items:center;gap:7px;background:var(--teal-ink);color:#fff;font-weight:700;font-size:13.5px;border-radius:var(--rctrl);padding:11px 20px}
+.scard{background:#fff;border:1px solid #e2e8ed;border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.sc-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sc-top .name{font-size:16px;font-weight:600;color:var(--ink)}
+.sc-top .chip{font-size:11.5px;font-weight:600;border-radius:999px;padding:3px 11px;background:#fff;border:1px solid #e2e8ed;color:var(--teal-ink);letter-spacing:.02em}
+.sc-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:11px;padding-bottom:14px;border-bottom:1px solid #eef1f4;font-size:12.5px;color:var(--sub);font-weight:600}
+.sc-meta .seg{white-space:nowrap;display:inline-flex;align-items:center;gap:5px}
+.sc-meta .seg .ico{color:var(--teal)}
+.sc-meta .d{color:#cbd5d1}
+.opt{margin-top:14px;border:1px solid #e2e8ed;border-radius:var(--rctrl);padding:14px 15px;background:#fff}
+.opt .oname{font-size:14.5px;font-weight:600;color:var(--ink)}
+.opt .oline{font-size:13.5px;margin-top:5px;display:flex;align-items:center;flex-wrap:wrap;gap:2px}
+.opt .oline .price{font-weight:700;color:var(--teal-ink)}
+.opt .oline .d{color:#cbd5d1;margin:0 6px}
+.opt .oline .tag{color:var(--faint);font-weight:600}
+.opt .odesc{font-size:13px;color:var(--sub);margin-top:6px}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero h1{font-size:20px}
+  .card{padding:16px}
+  .form{grid-template-columns:1fr;gap:14px}
+  .checks{flex-direction:column;align-items:flex-start;gap:12px}
+  .btn{width:100%;justify-content:center}
+  .scard{padding:16px}
+  .sc-top{gap:8px}.sc-top .chip{margin-left:auto}
+  .sc-meta{gap:6px}
+}
+</style></head><body><div class="wrap">
+
+  <div class="hero">
+    <a class="back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>返回</a>
+    <div class="eyebrow">報價設計中 · 選配</div>
+    <h1>業主選配</h1>
+    <div class="desc">為業主出選配卡（沙發 / 燈具 / 磁磚 / 櫃體門板等），業主選擇並簽認後併入報價。</div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2Z"/></svg>新增選配項目</div>
+    <div class="form">
+      <div class="field"><label>選配名稱 <span class="req">*</span></label><div class="ctrl ph">例：客廳沙發 / 主臥燈具</div></div>
+      <div class="field"><label>工種 <span class="req">*</span></label><select class="ctrl"><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>空調工程</option><option>地板工程</option><option>燈具工程</option><option>衛浴/電器設備</option><option>石材工程</option><option>壁紙工程</option><option>窗簾工程</option><option>設計家具/家飾</option><option>清潔/收尾工程</option><option>消防工程</option><option>其他加購</option></select></div>
+      <div class="field"><label>位置</label><div class="ctrl ph">例：客廳 / 主臥</div></div>
+      <div class="field"><label>預算上限</label><div class="ctrl ph">不填則無上限</div></div>
+      <div class="field"><label>截止日</label><div class="ctrl ph num">mm/dd/yyyy</div></div>
+      <div class="checks">
+        <span class="chk"><span class="box"></span>可多選</span>
+        <span class="chk"><span class="box"></span>共用預算</span>
+      </div>
+      <div class="submitrow"><span class="btn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增選配</span></div>
+    </div>
+  </div>
+
+  <div class="seclabel"><div class="l">已建立選配</div></div>
+
+  <div class="scard">
+    <div class="sc-top">
+      <span class="name">E2E 路由覆蓋選配</span>
+      <span class="chip">已發給業主</span>
+    </div>
+    <div class="sc-meta">
+      <span class="seg"><svg class="ico" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/></svg>拆除工程</span>
+      <span class="d">·</span><span class="seg">客廳</span>
+      <span class="d">·</span><span class="seg num">預算上限 $30,000</span>
+    </div>
+    <div class="opt">
+      <div class="oname">標準方案</div>
+      <div class="oline"><span class="price num">$28,000</span><span class="d">·</span><span class="tag">E2E</span></div>
+      <div class="odesc">Route coverage smoke fixture</div>
+    </div>
+  </div>
+
+</div></body></html>

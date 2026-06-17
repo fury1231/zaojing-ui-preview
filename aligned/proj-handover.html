@@ -1,0 +1,71 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--teal-ink);align-self:flex-start}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .lead{font-size:13px;color:rgba(255,255,255,.74);margin-top:6px;font-variant-numeric:tabular-nums}
+.card{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.sectitle{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);margin-bottom:16px;letter-spacing:.01em}
+.sectitle::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.sectitle svg{color:var(--teal)}
+.row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 16px}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0;grid-column:span 1}
+.s1{grid-column:span 1}.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}
+.f .k{font-size:11.5px;font-weight:600;color:var(--sub);letter-spacing:.02em}
+.ctrl{width:100%;font-size:13.5px;color:#1f2d38;background:#fff;border:1px solid #e2e8ed;border-radius:9px;padding:0 12px;height:40px;display:flex;align-items:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:500;transition:border-color .15s,box-shadow .15s}
+.ctrl.ph{color:#aab4bd;font-weight:400}
+.ctrl.area{height:auto;min-height:72px;align-items:flex-start;padding:11px 12px;white-space:normal}
+.people{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--teal-ink);background:#fff;border:1px solid #e2e8ed;border-radius:999px;padding:8px 14px;white-space:nowrap}
+.chip .box{width:14px;height:14px;border:1.5px solid var(--cardline);border-radius:3px;flex:0 0 auto}
+.footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:4px}
+.btn{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;border-radius:var(--rctrl);padding:11px 18px}
+.btn.primary{background:var(--teal-ink);color:#fff;border:0}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}.hero{padding:16px}.hero h1{font-size:20px}
+  .card{padding:16px 16px}
+  .row{grid-template-columns:repeat(2,1fr)}
+  .s1{grid-column:span 1}
+  .s2,.s3,.s4{grid-column:1/-1}
+  .footer{flex-direction:column;align-items:stretch}.footer .btn{justify-content:center;width:100%}
+}
+</style></head><body><div class="wrap">
+
+  <a class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>返回</a>
+
+  <div class="hero">
+    <div class="eyebrow">驗收交付</div>
+    <h1>驗收交付預約</h1>
+    <div class="lead num">0918-527-346</div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="m9 16 2 2 4-4"/></svg>建立預約</div>
+
+    <div class="row">
+      <div class="f s4"><span class="k">預約時間</span><span class="ctrl num ph">mm/dd/yyyy, --:-- --</span></div>
+
+      <div class="f s4"><span class="k">地點（可選）</span><span class="ctrl ph">現場地址 / 大樓樓層</span></div>
+
+      <div class="f s4"><span class="k">備註（可選）</span><span class="ctrl area ph">特別交辦事項</span></div>
+
+      <div class="f s4"><span class="k">與會人員（勾選）</span>
+        <div class="people">
+          <span class="chip"><span class="box"></span>李建宏</span>
+          <span class="chip"><span class="box"></span>王美玲</span>
+          <span class="chip"><span class="box"></span>林柏翰（業主）</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <button class="btn primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>建立預約</button>
+    </div>
+  </div>
+
+</div></body></html>

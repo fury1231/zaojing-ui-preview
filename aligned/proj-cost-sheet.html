@@ -1,0 +1,104 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>成本彙算</title><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.back{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:600;color:var(--sub);align-self:flex-start}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:600;letter-spacing:.04em}
+.hero .eyebrow .v{background:rgba(255,255,255,.16);color:#fff;font-weight:700;border-radius:999px;padding:2px 9px}
+.hero .eyebrow .draft{background:rgba(218,168,72,.28);color:#ffe6b0;font-weight:700;border-radius:999px;padding:2px 9px;letter-spacing:.06em}
+.hero h1{font-size:22px;font-weight:600;margin-top:8px}
+.hero .desc{font-size:13px;color:rgba(255,255,255,.78);margin-top:6px}
+
+/* 統計卡:白底髮絲邊 + 柔和長陰影,移除粗 teal 左邊框 */
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.stat{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:18px 20px}
+.stat .k{font-size:12px;font-weight:600;color:var(--sub);letter-spacing:.02em}
+.stat .big{font-size:26px;font-weight:800;color:var(--teal-ink);margin-top:6px}
+.stat .sub{font-size:11.5px;color:var(--faint);margin-top:5px}
+
+/* 卡片:白底髮絲邊 #e2e8ed、16px 圓角、柔和長陰影、移除舊版粗 teal 左邊框 */
+.card{background:#fff;border:1px solid #e2e8ed;border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+
+/* 區塊標題:15px semibold + ::before teal 直條 + 圖示 */
+.sectitle{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);margin-bottom:16px;letter-spacing:.01em}
+.sectitle::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.sectitle svg{color:var(--teal)}
+
+/* 表單:固定 4 等欄,欄界跨列垂直對齊,框填滿格子 */
+.form{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 16px}
+.fld{display:flex;flex-direction:column;gap:6px;min-width:0;grid-column:span 1}
+.s1{grid-column:span 1}.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}
+.fld .lbl{font-size:11.5px;font-weight:600;color:var(--sub);letter-spacing:.02em}
+.fld .lbl .req{color:#b45309}
+.inp{width:100%;font-size:13.5px;color:#aab4bd;font-weight:400;background:#fff;border:1px solid #e2e8ed;border-radius:9px;padding:0 12px;height:40px;display:flex;align-items:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:border-color .15s,box-shadow .15s}
+
+.formfoot{display:flex;justify-content:flex-end;margin-top:16px}
+.btn{display:inline-flex;align-items:center;gap:7px;background:var(--teal-ink);color:#fff;font-weight:700;font-size:13px;border-radius:var(--rctrl);padding:11px 18px}
+
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:42px 16px}
+.empty .eico{color:#cbd5d1}
+.empty .et{font-size:13.5px;color:var(--sub)}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero h1{font-size:20px}
+  .stats{grid-template-columns:1fr}
+  .form{grid-template-columns:repeat(2,1fr);gap:14px 12px}
+  .s2,.s3,.s4{grid-column:1 / -1}
+  .formfoot .btn{flex:1 1 100%;justify-content:center}
+}
+</style></head><body><div class="wrap">
+
+  <a class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>返回</a>
+
+  <div class="hero">
+    <div class="eyebrow"><span class="v">成本彙算 v1</span><span class="draft">DRAFT</span></div>
+    <h1>成本彙算表</h1>
+    <div class="desc">工班+材料成本逐項彙整，作為業主報價基礎</div>
+  </div>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="k">總成本</div>
+      <div class="big num">$0</div>
+      <div class="sub num">0 項 · 0 類</div>
+    </div>
+    <div class="stat">
+      <div class="k">預估管理費 (2%)</div>
+      <div class="big num">$0</div>
+      <div class="sub">業主報價單編製時加入</div>
+    </div>
+    <div class="stat">
+      <div class="k">低毛利警示</div>
+      <div class="big num">0</div>
+      <div class="sub">毛利 &lt; 25% 的項目</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增成本項目</div>
+    <div class="form">
+      <div class="fld s1"><span class="lbl">類別 <span class="req">*</span></span><span class="inp">木作 / 水電 / ...</span></div>
+      <div class="fld s1"><span class="lbl">項目 <span class="req">*</span></span><span class="inp">如：牆面拆除</span></div>
+      <div class="fld s1"><span class="lbl">空間</span><span class="inp">客廳 / 主臥 / 廚房</span></div>
+      <div class="fld s1"><span class="lbl">數量 <span class="req">*</span></span><span class="inp">&nbsp;</span></div>
+      <div class="fld s1"><span class="lbl">單位 <span class="req">*</span></span><span class="inp">式</span></div>
+      <div class="fld s1"><span class="lbl">單價 <span class="req">*</span></span><span class="inp">&nbsp;</span></div>
+      <div class="fld s1"><span class="lbl">加價% (可空白)</span><span class="inp">如：30</span></div>
+      <div class="fld s1"><span class="lbl">備註</span><span class="inp">特殊規格、材質...</span></div>
+    </div>
+    <div class="formfoot">
+      <span class="btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增項目</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="empty">
+      <svg class="eico" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+      <div class="et">尚無成本項目，請從上方新增</div>
+    </div>
+  </div>
+
+</div></body></html>

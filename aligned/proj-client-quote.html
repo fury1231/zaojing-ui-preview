@@ -1,0 +1,416 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:#e2e8ed;--rcard:16px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;letter-spacing:.04em;color:rgba(255,255,255,.72)}
+.hero .back{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:rgba(255,255,255,.82);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:var(--rctrl);padding:7px 11px}
+.hero .preview{margin-left:auto;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);color:#fff;font-weight:600;font-size:13px;border-radius:var(--rctrl);padding:8px 13px}
+.hero h1{font-size:22px;font-weight:600;margin-top:12px}
+.hero .sub{font-size:13px;color:rgba(255,255,255,.78);margin-top:6px}
+.hero .chips{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.hero .chip{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:600;color:rgba(255,255,255,.92);white-space:nowrap}
+
+.card{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.sectitle{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);margin-bottom:16px;letter-spacing:.01em}
+.sectitle::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.sectitle svg{color:var(--teal)}
+
+.fields{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 16px}
+.fields .f{font-size:13.5px;min-width:0;display:flex;flex-direction:column;gap:4px}
+.fields .f .k{font-size:11.5px;color:var(--sub);font-weight:600;letter-spacing:.02em}
+.fields .f .v{color:#1f2d38;font-weight:500;word-break:break-word}
+.fields .f .v.faint{color:#aab4bd;font-weight:400}
+.full{grid-column:1 / -1}
+.s2{grid-column:span 2}
+
+.klabel{font-size:11.5px;color:var(--sub);font-weight:600;letter-spacing:.02em;display:block;margin-top:14px}
+.note{font-size:12px;color:var(--sub);background:#f7f8fa;border:1px solid var(--cardline);border-radius:var(--rctrl);padding:10px 12px;margin-top:8px;line-height:1.65}
+
+.subhead{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:13px;font-weight:600;color:var(--teal-ink);margin:16px 0 10px;padding-top:14px;border-top:1px solid #eef1f4;letter-spacing:.01em}
+.subhead:first-child{margin-top:0}
+.subhead .add{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--teal-ink);background:var(--tint);border:1px solid #a7d8d8;border-radius:999px;padding:5px 11px}
+
+.spacecard{background:#fff;border:1px solid var(--cardline);border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.04);padding:16px 18px}
+.spc-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.spc-top .name{font-size:15px;font-weight:600;color:var(--teal-ink)}
+.spc-top .addsub{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--teal-ink);background:#fff;border:1px solid var(--cardline);border-radius:999px;padding:4px 10px}
+.spc-top .amt{margin-left:auto;font-size:15px;font-weight:700;color:var(--teal-ink)}
+.spc-fields{display:grid;grid-template-columns:repeat(5,1fr);gap:10px 14px;margin-bottom:6px}
+.spc-fields .f{font-size:13.5px;min-width:0;display:flex;flex-direction:column;gap:4px}
+.spc-fields .f .k{font-size:11.5px;color:var(--sub);font-weight:600;letter-spacing:.02em}
+.spc-fields .f .v{font-weight:500;color:#1f2d38;word-break:break-word}
+.spc-fields .f .v.faint{color:#aab4bd;font-weight:400}
+
+.tblwrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--cardline);border-radius:var(--rctrl);margin-top:2px}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:560px}
+th{text-align:left;font-size:11.5px;font-weight:600;color:var(--sub);background:#f7f8fa;padding:9px 10px;border-bottom:1px solid var(--cardline);white-space:nowrap;letter-spacing:.02em}
+td{padding:9px 10px;border-bottom:1px solid #f0f2f4;color:var(--ink)}
+tr:last-child td{border-bottom:none}
+.addrow{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--teal-ink)}
+
+.imgrow{display:flex;gap:10px;align-items:flex-start;margin-top:10px;font-size:12px;color:var(--sub)}
+.imgrow .ph{flex:0 0 64px;width:64px;height:64px;border-radius:9px;background:#f7f8fa;border:1px solid var(--cardline);display:flex;align-items:center;justify-content:center;color:#aab4bd;font-size:10px;text-align:center}
+.imgrow .desc{flex:1;min-width:0;line-height:1.65}
+.imgrow .desc .idx{font-weight:700;color:var(--teal-ink)}
+
+.totals{margin-top:8px;border-top:1px solid #eef1f4;padding-top:10px}
+.totrow{display:flex;align-items:center;justify-content:space-between;font-size:13.5px;padding:6px 0;gap:10px}
+.totrow .k{color:var(--sub);font-weight:600;display:flex;align-items:center;gap:8px}
+.totrow .stepper{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--faint)}
+.totrow .stepper b{display:inline-flex;width:20px;height:20px;align-items:center;justify-content:center;border:1px solid var(--cardline);border-radius:6px;font-weight:700;color:var(--teal-ink);background:#fff}
+.totrow .v{font-weight:700;color:var(--teal-ink)}
+.totrow.grand{border-top:1px solid var(--cardline);margin-top:6px;padding-top:12px;font-size:15px}
+.totrow.grand .v{font-size:17px}
+
+.setgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 16px}
+.setgrid .f{display:flex;flex-direction:column;gap:6px;min-width:0}
+.setgrid .f .k{font-size:11.5px;color:var(--sub);font-weight:600;letter-spacing:.02em}
+.setgrid .f .box{display:flex;align-items:center;height:40px;border:1px solid var(--cardline);border-radius:9px;padding:0 12px;font-size:13.5px;color:#aab4bd;background:#fff}
+
+.clausebox{display:flex;align-items:center;border:1px solid var(--cardline);border-radius:var(--rctrl);padding:0 14px;height:44px;margin-top:8px;font-size:13.5px;font-weight:600;color:var(--teal-ink);background:#fff}
+
+.signgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.signbox{border:1px solid var(--cardline);border-radius:var(--rctrl);padding:16px;text-align:center;background:#fff}
+.signbox .role{font-size:13px;font-weight:600;color:var(--teal-ink);margin-bottom:10px}
+.signbox .pad{display:flex;align-items:center;justify-content:center;border:1px dashed #a7d8d8;border-radius:9px;padding:18px;color:var(--teal-ink);font-size:13px;font-weight:600;background:var(--tint);margin-bottom:8px}
+.signbox .who{font-size:12px;color:var(--sub);font-weight:600}
+
+.linkrow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:14px;padding-top:14px;border-top:1px solid #eef1f4}
+.linkrow .lk{flex:1;min-width:0;font-size:12px;color:var(--sub);background:#f7f8fa;border:1px solid var(--cardline);border-radius:var(--rctrl);padding:9px 11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-variant-numeric:tabular-nums}
+.linkrow .copy{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--teal-ink);background:var(--tint);border:1px solid #a7d8d8;border-radius:var(--rctrl);padding:9px 12px;flex:0 0 auto}
+
+.actbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:700;border-radius:var(--rctrl);padding:11px 16px;border:1px solid var(--cardline)}
+.btn.ghost{background:#fff;color:var(--teal-ink)}
+.btn.primary{background:var(--teal-ink);color:#fff;border-color:var(--teal-ink)}
+.btn.ok{background:#ecfdf5;color:#047857;border-color:#a7f3d0}
+.actbar .spacer{margin-left:auto}
+
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero .preview{margin-left:auto}
+  .fields{grid-template-columns:1fr 1fr}.fields .f.full,.fields .f.s2{grid-column:1 / -1}
+  .spc-fields{grid-template-columns:1fr 1fr}
+  .spc-top .amt{margin-left:0;flex:1 1 100%}
+  .setgrid{grid-template-columns:1fr 1fr}
+  .signgrid{grid-template-columns:1fr}
+  .actbar{flex-direction:column;align-items:stretch}.actbar .btn{width:100%}.actbar .spacer{display:none}
+  .linkrow .lk{flex:1 1 100%}.linkrow .copy{flex:1 1 100%;justify-content:center}
+}
+</style></head><body><div class="wrap">
+
+  <div class="hero">
+    <div class="top">
+      <span class="back"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>返回</span>
+      <span class="eyebrow"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>業主報價合約 · 編輯</span>
+      <span class="preview"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>預覽模式</span>
+    </div>
+    <h1>北辰美學股份有限公司 · 全屋定製正式合約</h1>
+    <div class="sub">造境 ZAOJING · 文山靜巷華廈</div>
+    <div class="chips">
+      <span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>合約編號 <span class="num">ZJ-2026-011-C002</span></span>
+      <span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>有效日期：<span class="num">2026/6/17 - 2026/6/24</span></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>業主聯絡資料</div>
+    <div class="fields">
+      <div class="f"><span class="k">業主姓名</span><span class="v">林柏翰 先生</span></div>
+      <div class="f"><span class="k">聯絡電話</span><span class="v num">0918-527-346</span></div>
+      <div class="f"><span class="k">LINE ID</span><span class="v faint">待補</span></div>
+      <div class="f"><span class="k">E-Mail信箱</span><span class="v">lin.renovation.demo@example.com</span></div>
+      <div class="f s2"><span class="k">聯絡地址</span><span class="v faint">待補</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>專案承辦資訊</div>
+    <div class="fields">
+      <div class="f"><span class="k">PM設計師</span><span class="v">李建宏</span></div>
+      <div class="f"><span class="k">聯絡電話</span><span class="v num">0912000007</span></div>
+      <div class="f"><span class="k">工地總監</span><span class="v faint">待補</span></div>
+      <div class="f"><span class="k">負責門店</span><span class="v">造境台中直營店</span></div>
+      <div class="f full"><span class="k">門店地址</span><span class="v">台中市西屯區市政北七路188號</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/></svg>專案房屋資訊</div>
+    <div class="fields">
+      <div class="f"><span class="k">裝修類型</span><span class="v">舊屋翻新</span></div>
+      <div class="f"><span class="k">房屋類型</span><span class="v faint">待補</span></div>
+      <div class="f"><span class="k">房屋狀態</span><span class="v">中古屋</span></div>
+      <div class="f"><span class="k">社區名稱</span><span class="v">文山靜巷華廈</span></div>
+      <div class="f"><span class="k">屋齡</span><span class="v">18 年</span></div>
+      <div class="f"><span class="k">樓層</span><span class="v faint">待補</span></div>
+      <div class="f"><span class="k">室內坪數</span><span class="v">32.5 坪</span></div>
+      <div class="f"><span class="k">規劃坪數</span><span class="v faint">待補</span></div>
+      <div class="f"><span class="k">棟別</span><span class="v faint">待補</span></div>
+      <div class="f"><span class="k">格局</span><span class="v">房間 3 · 衛浴 2 · 客廳 2</span></div>
+      <div class="f s2"><span class="k">施工地址</span><span class="v">台北市文山區木柵路二段88巷12號6樓</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></svg>施工注意事項</div>
+    <div class="fields">
+      <div class="f"><span class="k">電梯尺寸</span><span class="v num">145×110×220</span></div>
+      <div class="f"><span class="k">施工時間</span><span class="v faint">待補</span></div>
+      <div class="f s2"><span class="k">管委會規定</span><span class="v">平日 09:00-17:00；假日 10:00-16:00</span></div>
+      <div class="f"><span class="k">管委會備註</span><span class="v faint">待補</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>整體設計摘要</div>
+    <div class="fields">
+      <div class="f"><span class="k">客戶預算</span><span class="v num">$2,200,000</span></div>
+      <div class="f"><span class="k">風格</span><span class="v">現代 / 簡約</span></div>
+      <div class="f"><span class="k">偏好材質</span><span class="v faint">待補</span></div>
+      <div class="f"><span class="k">偏好色系</span><span class="v faint">待補</span></div>
+      <div class="f"><span class="k">業主職業</span><span class="v">科技業產品經理</span></div>
+      <div class="f"><span class="k">家庭人數</span><span class="v">3 人</span></div>
+      <div class="f"><span class="k">家庭狀況</span><span class="v faint">待補</span></div>
+    </div>
+    <span class="klabel">家庭成員</span>
+    <div class="note">尚未填寫家庭成員。此欄會影響收納高度、生活習慣、兒童安全、長輩動線與施工細節，請回需求編輯補齊。</div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg>一、設計明細報價單</div>
+    <div class="subhead"><span></span><span class="add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>新空間</span></div>
+
+    <div class="spacecard" style="margin-bottom:10px">
+      <div class="spc-top"><span class="name">客廳</span><span class="addsub"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>子空間</span><span class="amt num">$129,300</span></div>
+      <div class="spc-fields">
+        <div class="f"><span class="k">坪數</span><span class="v">8.5 坪</span></div>
+        <div class="f"><span class="k">尺寸</span><span class="v num">520×430×280 cm</span></div>
+        <div class="f"><span class="k">風格</span><span class="v">現代 / 簡約</span></div>
+        <div class="f"><span class="k">分配比</span><span class="v faint">待補</span></div>
+        <div class="f"><span class="k">總金額</span><span class="v num">$129,300</span></div>
+      </div>
+      <span class="klabel">空間備註</span>
+      <div class="note">公共區域需維持明亮開放，電視牆收納不可壓縮走道，掃地機基地需避開主要視線。<br>待補</div>
+      <div class="subhead">報價明細<span class="add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>報價項目</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>工程分類／項目名稱</th><th>規格說明 / 備註</th><th>單價</th><th>數量</th><th>單位</th><th>總價</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="spacecard" style="margin-bottom:10px">
+      <div class="spc-top"><span class="name">廚房</span><span class="addsub"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>子空間</span><span class="amt num">$234,600</span></div>
+      <div class="spc-fields">
+        <div class="f"><span class="k">坪數</span><span class="v">4.2 坪</span></div>
+        <div class="f"><span class="k">尺寸</span><span class="v num">310×240×260 cm</span></div>
+        <div class="f"><span class="k">風格</span><span class="v">現代 / 簡約</span></div>
+        <div class="f"><span class="k">分配比</span><span class="v faint">待補</span></div>
+        <div class="f"><span class="k">總金額</span><span class="v num">$234,600</span></div>
+      </div>
+      <span class="klabel">空間備註</span>
+      <div class="note">需兼顧備餐檯面與雙人通行，電器櫃位置要靠近給排水與既有排煙路徑。<br>待補</div>
+      <div class="subhead">報價明細<span class="add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>報價項目</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>工程分類／項目名稱</th><th>規格說明 / 備註</th><th>單價</th><th>數量</th><th>單位</th><th>總價</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="spacecard" style="margin-bottom:10px">
+      <div class="spc-top"><span class="name">主臥</span><span class="addsub"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>子空間</span><span class="amt num">$130,800</span></div>
+      <div class="spc-fields">
+        <div class="f"><span class="k">坪數</span><span class="v">5.8 坪</span></div>
+        <div class="f"><span class="k">尺寸</span><span class="v num">390×360×280 cm</span></div>
+        <div class="f"><span class="k">風格</span><span class="v">北歐 / 自然</span></div>
+        <div class="f"><span class="k">分配比</span><span class="v faint">待補</span></div>
+        <div class="f"><span class="k">總金額</span><span class="v num">$130,800</span></div>
+      </div>
+      <span class="klabel">空間備註</span>
+      <div class="note">主臥需安靜、收納量足，床尾走道至少保留 75 cm，衛浴與更衣室入口需維持隱私。<br>待補</div>
+      <div class="subhead">報價明細<span class="add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>報價項目</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>工程分類／項目名稱</th><th>規格說明 / 備註</th><th>單價</th><th>數量</th><th>單位</th><th>總價</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="spacecard" style="margin-bottom:10px">
+      <div class="spc-top"><span class="name">書房</span><span class="addsub"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>子空間</span><span class="amt num">$120,800</span></div>
+      <div class="spc-fields">
+        <div class="f"><span class="k">坪數</span><span class="v">3.5 坪</span></div>
+        <div class="f"><span class="k">尺寸</span><span class="v num">300×250×280 cm</span></div>
+        <div class="f"><span class="k">風格</span><span class="v">現代 / 簡約</span></div>
+        <div class="f"><span class="k">分配比</span><span class="v faint">待補</span></div>
+        <div class="f"><span class="k">總金額</span><span class="v num">$120,800</span></div>
+      </div>
+      <span class="klabel">空間備註</span>
+      <div class="note">書房需支援雙人同時辦公，視訊背景要整潔，門片與窗戶需加強隔音。<br>待補</div>
+      <div class="subhead">報價明細<span class="add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>報價項目</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>工程分類／項目名稱</th><th>規格說明 / 備註</th><th>單價</th><th>數量</th><th>單位</th><th>總價</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="spacecard" style="margin-bottom:10px">
+      <div class="spc-top"><span class="name">客衛浴</span><span class="addsub"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>子空間</span><span class="amt num">$144,000</span></div>
+      <div class="spc-fields">
+        <div class="f"><span class="k">坪數</span><span class="v">2.4 坪</span></div>
+        <div class="f"><span class="k">尺寸</span><span class="v num">220×170×240 cm</span></div>
+        <div class="f"><span class="k">風格</span><span class="v">現代 / 簡約</span></div>
+        <div class="f"><span class="k">分配比</span><span class="v faint">待補</span></div>
+        <div class="f"><span class="k">總金額</span><span class="v num">$144,000</span></div>
+      </div>
+      <span class="klabel">空間備註</span>
+      <div class="note">公共衛浴使用頻率高，需好清潔、止滑，乾濕分離門片不可影響馬桶使用動線。<br>待補</div>
+      <div class="subhead">報價明細<span class="add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>報價項目</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>工程分類／項目名稱</th><th>規格說明 / 備註</th><th>單價</th><th>數量</th><th>單位</th><th>總價</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="spacecard" style="margin-bottom:10px">
+      <div class="spc-top"><span class="name">主臥 / 衛浴</span><span class="addsub"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>子空間</span><span class="amt num">$130,300</span></div>
+      <div class="spc-fields">
+        <div class="f"><span class="k">坪數</span><span class="v">2.1 坪</span></div>
+        <div class="f"><span class="k">尺寸</span><span class="v num">260×230×260 cm</span></div>
+        <div class="f"><span class="k">風格</span><span class="v">現代 / 簡約</span></div>
+        <div class="f"><span class="k">分配比</span><span class="v faint">待補</span></div>
+        <div class="f"><span class="k">總金額</span><span class="v num">$130,300</span></div>
+      </div>
+      <span class="klabel">空間備註</span>
+      <div class="note">待補</div>
+      <div class="imgrow"><span class="ph">無示意圖</span><span class="desc"><span class="idx">1.</span> 乾濕分離與防水重做；泥作；尺寸 260 x 230 x 260；1式</span></div>
+      <div class="subhead">報價明細<span class="add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>報價項目</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>工程分類／項目名稱</th><th>規格說明 / 備註</th><th>單價</th><th>數量</th><th>單位</th><th>總價</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="spacecard">
+      <div class="spc-top"><span class="name">主臥 / 更衣室</span><span class="addsub"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>子空間</span><span class="amt num">$137,600</span></div>
+      <div class="spc-fields">
+        <div class="f"><span class="k">坪數</span><span class="v">2.6 坪</span></div>
+        <div class="f"><span class="k">尺寸</span><span class="v num">280×300×260 cm</span></div>
+        <div class="f"><span class="k">風格</span><span class="v">北歐 / 自然</span></div>
+        <div class="f"><span class="k">分配比</span><span class="v faint">待補</span></div>
+        <div class="f"><span class="k">總金額</span><span class="v num">$137,600</span></div>
+      </div>
+      <span class="klabel">空間備註</span>
+      <div class="note">待補</div>
+      <div class="imgrow"><span class="ph">無示意圖</span><span class="desc"><span class="idx">1.</span> 雙側吊掛與抽屜收納；系統櫃；尺寸 240 x 240 x 60；2組</span></div>
+      <div class="subhead">報價明細<span class="add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>報價項目</span></div>
+      <div class="tblwrap"><table>
+        <thead><tr><th>工程分類／項目名稱</th><th>規格說明 / 備註</th><th>單價</th><th>數量</th><th>單位</th><th>總價</th><th>操作</th></tr></thead>
+        <tbody>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+          <tr><td colspan="7"><span class="addrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>加入明細</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>二、付款節點與合約金額</div>
+    <div class="subhead">付款條件<span class="add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg>新增節點</span></div>
+    <div class="tblwrap"><table>
+      <thead><tr><th>節點</th><th>條件說明</th><th>比例 %</th><th>應付金額</th><th>操作</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1.</td><td></td><td class="num">%</td><td class="num">$0</td><td></td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="subhead">合約金額</div>
+    <div class="totals">
+      <div class="totrow"><span class="k">監造費 <span class="stepper"><b>-</b><span class="num">5%</span><b>+</b></span></span><span class="v num">$51,370</span></div>
+      <div class="totrow"><span class="k">小計</span><span class="v num">$1,027,400</span></div>
+      <div class="totrow"><span class="k">營業稅（5%）</span><span class="v num">$53,939</span></div>
+      <div class="totrow grand"><span class="k">合約報價總額</span><span class="v num">$1,132,709</span></div>
+    </div>
+
+    <div class="subhead">報價設定</div>
+    <div class="setgrid">
+      <div class="f"><span class="k">報價有效天數</span><div class="box">—</div></div>
+      <div class="f"><span class="k">預估工期</span><div class="box">—</div></div>
+      <div class="f"><span class="k">開工日期</span><div class="box">—</div></div>
+      <div class="f"><span class="k">入住日期</span><div class="box">—</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>三、合約條款與說明事項</div>
+    <div class="clausebox">合約內容</div>
+    <div class="clausebox">監造與驗收保固</div>
+    <div class="clausebox">追加注意事項</div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"/></svg>四、簽認欄位</div>
+    <div class="signgrid">
+      <div class="signbox">
+        <div class="role">PM 設計師手簽</div>
+        <div class="pad">點擊簽名</div>
+        <div class="who">PM 設計師：李建宏</div>
+      </div>
+      <div class="signbox">
+        <div class="role">業主手簽</div>
+        <div class="pad">點擊簽名</div>
+        <div class="who">業主：林柏翰 先生</div>
+      </div>
+    </div>
+    <div class="linkrow">
+      <span class="klabel" style="margin-top:0;flex:1 1 100%">業主連結</span>
+      <span class="lk">http://localhost:3000/client/quote-preview-cmq1q9b7t000jszvu0x96528k/quote</span>
+      <span class="copy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="actbar">
+      <span class="btn ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>下載 PDF</span>
+      <span class="spacer"></span>
+      <span class="btn primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>儲存</span>
+      <span class="btn ok"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg>傳送成功</span>
+    </div>
+  </div>
+
+</div></body></html>

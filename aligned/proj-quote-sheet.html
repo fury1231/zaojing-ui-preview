@@ -1,0 +1,491 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:#e2e8ed;--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--sub);font-weight:600}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.12em;text-transform:uppercase}
+.hero h1{font-size:22px;font-weight:600;margin-top:6px}
+.hero .desc{font-size:13px;color:rgba(255,255,255,.74);margin-top:8px;max-width:680px}
+.card{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.share-row{display:flex;flex-wrap:wrap;gap:16px}
+.share{flex:1 1 240px;border:1px solid var(--cardline);border-radius:12px;padding:14px 16px;background:#fff}
+.share .nm{font-size:14px;font-weight:600;color:var(--teal-ink);display:flex;align-items:center;gap:7px}
+.share .btns{display:flex;gap:8px;margin-top:12px}
+.share .b{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:600;border-radius:var(--rctrl);padding:9px 10px;border:1px solid var(--cardline);color:var(--teal-ink);background:#fff}
+.share .b.fill{background:var(--teal-ink);color:#fff;border-color:var(--teal-ink)}
+.seclabel{display:flex;align-items:flex-start;justify-content:space-between;margin:8px 2px 0;flex-wrap:wrap;gap:6px}
+.seclabel .l{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);letter-spacing:.01em}
+.seclabel .l::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.seclabel .sub{font-size:12px;color:var(--faint);font-weight:500;margin-top:3px;padding-left:12px}
+.seclabel .r{font-size:12px;color:var(--faint);font-weight:600;white-space:nowrap}
+.space{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.space-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid #eef1f4;padding-bottom:12px;margin-bottom:2px}
+.space-head .nm{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);letter-spacing:.01em}
+.space-head .nm::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.space-head .chip{font-size:11.5px;font-weight:600;border-radius:999px;padding:3px 10px;background:#fff;border:1px solid var(--cardline);color:var(--teal-ink);letter-spacing:.02em}
+.space-head .chip.faint{color:var(--sub)}
+.item{border:1px solid var(--cardline);border-radius:12px;padding:14px;margin-top:12px;background:#fff}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px 14px}
+.fld{display:flex;flex-direction:column;gap:6px;min-width:0}
+.fld.c2{grid-column:span 2}.fld.c6{grid-column:span 6}
+.fld .k{font-size:11.5px;color:var(--sub);font-weight:600;letter-spacing:.02em}
+.fld .k .req{color:#dc2626}
+.ctl{font-size:13.5px;border:1px solid var(--cardline);border-radius:9px;padding:0 12px;height:40px;background:#fff;color:#1f2d38;width:100%;font-family:inherit;font-weight:500;min-width:0;transition:border-color .15s,box-shadow .15s}
+.ctl::placeholder{color:#aab4bd;font-weight:400}
+.ctl:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(15,92,109,.12)}
+select.ctl{appearance:none;background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23b6c0c8' stroke-width='2.4'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px}
+.dims{display:flex;gap:8px}.dims .d{flex:1;display:flex;align-items:center;gap:5px;min-width:0}.dims .d label{font-size:11.5px;color:var(--sub);font-weight:600;flex:0 0 auto}
+.matrow{display:flex;align-items:center;gap:8px;height:40px}
+.seg{display:inline-flex;border:1px solid var(--cardline);border-radius:999px;overflow:hidden;background:#fff}
+.seg span{font-size:12.5px;font-weight:600;padding:7px 14px;color:var(--sub)}
+.seg span.on{background:var(--tint);color:var(--teal-ink)}
+.additem{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;margin-top:12px;font-size:13px;font-weight:600;color:var(--teal-ink);background:var(--tint);border:1px dashed #a7d8d8;border-radius:var(--rctrl);padding:11px}
+.ico{color:var(--teal)}
+.foot{position:sticky;bottom:0;background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 -6px 20px -12px rgba(11,54,66,.22);padding:14px 18px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.foot .t{display:flex;flex-direction:column;gap:2px}
+.foot .t .k{font-size:11.5px;color:var(--sub);font-weight:600;letter-spacing:.02em}
+.foot .t .v{font-size:14px;font-weight:700;color:var(--teal-ink)}
+.foot .t.total .v{font-size:18px}
+.foot .gap{flex:1}
+.foot .b{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:700;border-radius:var(--rctrl);padding:10px 16px}
+.foot .b.ghost{border:1px solid var(--cardline);color:var(--teal-ink);background:#fff}
+.foot .b.fill{background:var(--teal-ink);color:#fff}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}
+  .card,.space{padding:16px}
+  .share-row{gap:10px}.share{flex:1 1 100%}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .fld.c2{grid-column:span 2}.fld.c6{grid-column:1 / -1}
+  .dims{flex-direction:row}
+  .matrow{flex-wrap:wrap;height:auto}
+  .foot{gap:10px 14px}.foot .b{flex:1 1 100%}
+}
+</style></head><body><div class="wrap">
+
+  <span class="back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m15 18-6-6 6-6"/></svg>返回</span>
+
+  <div class="hero">
+    <span class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>外連預覽</span>
+    <h1>報價單</h1>
+    <div class="desc">產生可分享連結，對方不需要登入。業主版隱藏材料準備方，工班版會顯示。</div>
+  </div>
+
+  <div class="card">
+    <div class="share-row">
+      <div class="share">
+        <div class="nm"><svg class=ico width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>業主報價單</div>
+        <div class="btns"><span class="b"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製</span><span class="b fill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>開啟</span></div>
+      </div>
+      <div class="share">
+        <div class="nm"><svg class=ico width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>工班報價單</div>
+        <div class="btns"><span class="b"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>複製</span><span class="b fill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>開啟</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="seclabel">
+    <div class="l">報價單<div class="sub">依客戶資訊空間分組編輯施工項目；房間資料請回客戶資訊維護</div></div>
+    <div class="r">7 個空間 · 27 項施工項目</div>
+  </div>
+
+  <div class="space">
+    <div class="space-head"><span class="nm">客廳</span><span class="chip">8.5 坪</span><span class="chip faint">4 項</span></div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <span class="additem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增施工項目</span>
+  </div>
+
+  <div class="space">
+    <div class="space-head"><span class="nm">廚房</span><span class="chip">4.2 坪</span><span class="chip faint">4 項</span></div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <span class="additem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增施工項目</span>
+  </div>
+
+  <div class="space">
+    <div class="space-head"><span class="nm">主臥</span><span class="chip">5.8 坪</span><span class="chip faint">3 項</span></div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <span class="additem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增施工項目</span>
+  </div>
+
+  <div class="space">
+    <div class="space-head"><span class="nm">書房</span><span class="chip">3.5 坪</span><span class="chip faint">4 項</span></div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <span class="additem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增施工項目</span>
+  </div>
+
+  <div class="space">
+    <div class="space-head"><span class="nm">客衛浴</span><span class="chip">2.4 坪</span><span class="chip faint">4 項</span></div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <span class="additem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增施工項目</span>
+  </div>
+
+  <div class="space">
+    <div class="space-head"><span class="nm">主臥 / 衛浴</span><span class="chip">2.1 坪</span><span class="chip faint">4 項</span></div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <span class="additem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增施工項目</span>
+  </div>
+
+  <div class="space">
+    <div class="space-head"><span class="nm">主臥 / 更衣室</span><span class="chip">2.6 坪</span><span class="chip faint">4 項</span></div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="grid">
+        <div class="fld c2"><span class="k">工程分類 <span class="req">*</span></span><select class="ctl"><option>請選擇</option><option>拆除工程</option><option>保護工程</option><option>假設工程</option><option>泥作工程</option><option>水電工程</option><option>弱電工程</option><option>金屬工程</option><option>門窗工程</option><option>木作工程</option><option>系統櫃工程</option><option>油漆/塗裝工程</option><option>壓克力及玻璃工程</option><option>其他工程</option><option>其他（選填）</option></select></div>
+        <div class="fld c2"><span class="k">項目名稱 <span class="req">*</span></span><input class="ctl" placeholder="項目名稱"/></div>
+        <div class="fld"><span class="k">數量</span><input class="ctl num" placeholder="數量"/></div>
+        <div class="fld"><span class="k">單位</span><select class="ctl"><option>-</option><option>組</option><option>座</option><option>式</option><option>才</option><option>坪</option><option>個</option><option>點</option><option>支</option><option>樘</option><option>扇</option><option>片</option><option>尺</option><option>米</option><option>㎡</option><option>處</option><option>套</option><option>其他（自訂）</option></select></div>
+        <div class="fld"><span class="k">單價</span><input class="ctl num" placeholder="單價"/></div>
+        <div class="fld"><span class="k">總價</span><input class="ctl num" placeholder="總價"/></div>
+        <div class="fld c2"><span class="k">尺寸</span><div class="dims"><div class="d"><label>長</label><input class="ctl num"/></div><div class="d"><label>寬</label><input class="ctl num"/></div><div class="d"><label>高</label><input class="ctl num"/></div></div></div>
+        <div class="fld c2"><span class="k">材料準備方</span><div class="matrow"><span class="seg"><span class="on">工班自備</span><span>造境採購</span></span></div></div>
+        <div class="fld c6"><span class="k">備註</span><input class="ctl" placeholder="規格說明"/></div>
+      </div>
+    </div>
+    <span class="additem"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增施工項目</span>
+  </div>
+
+  <div class="foot">
+    <div class="t"><span class="k">監造費 %</span><span class="v num">$20,548</span></div>
+    <div class="t"><span class="k">小計</span><span class="v num">$1,027,400</span></div>
+    <div class="t"><span class="k">營業稅（5%）</span><span class="v num">$52,397</span></div>
+    <div class="t total"><span class="k">合計</span><span class="v num">$1,100,345</span></div>
+    <div class="gap"></div>
+    <span class="b ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>預覽業主報價單</span>
+    <span class="b fill"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2Z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>儲存報價單</span>
+  </div>
+
+</div></body></html>

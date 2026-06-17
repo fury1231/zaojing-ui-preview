@@ -1,0 +1,177 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:#e2e8ed;--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+
+/* hero */
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .back{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,.78);font-weight:600;margin-bottom:10px}
+.hero .eyebrow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:12px;color:rgba(255,255,255,.7);font-weight:600;letter-spacing:.04em}
+.hero .eyebrow .code{font-size:13px;color:rgba(255,255,255,.92);font-weight:700}
+.hero .chip{font-size:11px;font-weight:700;border-radius:999px;padding:2px 10px;background:rgba(255,255,255,.16);color:#fff}
+.hero .chip.amber{background:rgba(253,224,71,.22);color:#fde68a}
+.hero h1{font-size:22px;font-weight:600;margin-top:8px}
+.hero .sub{font-size:13px;color:rgba(255,255,255,.82);margin-top:6px;display:flex;flex-wrap:wrap;gap:0}
+.hero .sub .seg{white-space:nowrap}.hero .sub .d{color:rgba(255,255,255,.4);margin:0 6px}
+
+/* section label */
+.seclabel{display:flex;align-items:center;gap:9px;margin:8px 2px 2px;letter-spacing:.01em}
+.seclabel::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.seclabel .l{font-size:15px;font-weight:600;color:var(--teal-ink)}
+
+/* card */
+.card{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.ctitle{font-size:15px;font-weight:600;color:var(--teal-ink);display:flex;align-items:center;gap:9px;letter-spacing:.01em}
+.ctitle::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.ico{color:var(--teal)}
+
+/* QR card */
+.qr{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.qr .code{font-size:30px;font-weight:800;letter-spacing:3px;color:var(--teal-ink);font-variant-numeric:tabular-nums}
+.qr .hint{flex:1 1 220px;min-width:0;font-size:12.5px;color:var(--sub)}
+
+/* stat grid */
+.stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.card.stat{padding:16px 18px}
+.stat .k{font-size:12px;color:var(--sub);font-weight:600}
+.stat .v{font-size:22px;font-weight:800;color:var(--teal-ink);margin-top:4px}
+.stat .v.sm{font-size:18px}
+.stat .sub{font-size:12px;color:var(--faint);margin-top:3px}
+
+/* bargain ops */
+.ops{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.ops .b{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;border-radius:var(--rctrl);padding:9px 14px;border:1px solid;min-height:40px}
+.ops .b.primary{background:var(--teal-ink);color:#fff;border-color:var(--teal-ink)}
+.ops .b.lock{background:#fff;color:var(--teal-ink);border-color:#a7d8d8}
+.ops .b.void{background:#fff;color:#b91c1c;border-color:#fecaca}
+
+/* quote table */
+.qhead{display:flex;align-items:center;gap:9px;margin:8px 2px 2px;flex-wrap:wrap;letter-spacing:.01em}
+.qhead::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.qhead .l{font-size:15px;font-weight:600;color:var(--teal-ink)}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl thead th{font-size:11.5px;color:var(--faint);font-weight:700;text-align:left;padding:0 0 8px;border-bottom:1px solid #eef1f3;letter-spacing:.02em}
+.tbl thead th.r{text-align:right}
+.tbl tbody td{padding:11px 0;border-bottom:1px solid #f0f2f4;vertical-align:top}
+.tbl tbody tr:last-child td{border-bottom:none}
+.tbl .name{font-weight:600;color:var(--ink)}
+.tbl .spec{color:var(--sub);font-size:12.5px}
+.tbl .spec .meta{display:block;color:var(--faint);font-size:11.5px;margin-top:3px}
+.tbl .spec .meta .seg{white-space:nowrap}.tbl .spec .meta .d{color:#c2ccd2;margin:0 4px}
+.tbl td.r{text-align:right;white-space:nowrap}
+.tbl td.tot{font-weight:700;color:var(--teal-ink)}
+.colspec{width:46%}
+
+/* history */
+.hist{display:flex;flex-direction:column;gap:10px}
+.hcard{background:#fff;border:1px solid var(--cardline);border-radius:14px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:14px 16px}
+.hcard .h-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.hcard .ver{font-size:14px;font-weight:800;color:var(--teal-ink)}
+.hcard .badge{font-size:10px;font-weight:700;border-radius:999px;padding:1px 8px;background:var(--tint);color:var(--teal-ink)}
+.hcard .who{font-size:12px;color:var(--sub);font-weight:600}
+.hcard .when{font-size:11.5px;color:var(--faint);margin-left:auto;white-space:nowrap}
+.hcard .note{font-size:12px;color:var(--sub);margin-top:8px}
+.hcard .note .seg{white-space:nowrap}.hcard .note .d{color:#c2ccd2;margin:0 4px}
+.hcard .row2{display:flex;align-items:center;gap:10px;margin-top:8px;flex-wrap:wrap}
+.hcard .add{font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px;background:#ecfdf5;color:#047857}
+.hcard .amt{font-size:15px;font-weight:800;color:var(--teal-ink);margin-left:auto}
+.hcard .items{font-size:12px;color:var(--faint)}
+
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero h1{font-size:19px}
+  .qr{gap:12px}.qr .code{font-size:26px}
+  .stats{grid-template-columns:1fr}
+  .stat{display:flex;align-items:baseline;gap:10px}.stat .v{font-size:18px;margin-top:0}.stat .v.sm{font-size:16px}.stat .sub{margin-top:0}
+  .ops{flex-direction:column}.ops .b{width:100%;justify-content:center}
+  .tbl thead{display:none}
+  .tbl tbody td{display:block;padding:2px 0;border:none}
+  .tbl tbody tr{display:block;padding:11px 0;border-bottom:1px solid #f0f2f4}
+  .tbl tbody tr:last-child{border-bottom:none}
+  .tbl td.r{text-align:left}
+  .tbl td.qty:before{content:"數量／單位：";color:var(--faint);font-size:11px}
+  .tbl td.unit{display:inline}
+  .tbl td.price:before{content:"單價：";color:var(--faint);font-size:11px}
+  .tbl td.tot:before{content:"總價：";color:var(--faint);font-size:11px;font-weight:600}
+  .colspec{width:auto}
+  .hcard .when{margin-left:0;flex:1 1 100%}
+  .hcard .amt{margin-left:0}
+}
+</style></head><body><div class="wrap">
+
+  <div class="hero">
+    <span class="back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>返回</span>
+    <div class="eyebrow"><span class="code num">ZJ-2026-011</span><span class="chip">已發包</span><span class="chip amber">議價中</span></div>
+    <h1>木作工程（木作工程／林森木作工程行）</h1>
+    <div class="sub"><span class="seg">木作工程</span><span class="d">·</span><span class="seg">林柏翰</span><span class="d">·</span><span class="seg">林森木作工程行</span><span class="d">·</span><span class="seg">連工帶料</span></div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle"><svg class=ico width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3M21 14v.01M14 21h.01M21 21v-3h-3"/></svg>工地打卡 QR 碼</div>
+    <div class="qr" style="margin-top:14px">
+      <span class="code">MWV-QRV</span>
+      <span class="hint">貼在工地入口，工班進場打卡時掃描或輸入此 6 碼確認位置正確</span>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="card stat"><div><span class="k">當前總額</span><div class="v num">$226,000</div><div class="sub num">5 項</div></div></div>
+    <div class="card stat"><div><span class="k">議價版本</span><div class="v sm">v1</div><div class="sub">共 1 版</div></div></div>
+    <div class="card stat"><div><span class="k">工序狀態</span><div class="v sm">已發包</div><div class="sub">可繼續議價或鎖定</div></div></div>
+  </div>
+
+  <div class="card">
+    <div class="ctitle">議價操作</div>
+    <div class="ops">
+      <span class="b primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增議價版本</span>
+      <span class="b lock"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="11" width="16" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>鎖定簽約</span>
+      <span class="b void"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></svg>作廢合約</span>
+    </div>
+  </div>
+
+  <div class="qhead"><div class="l">當前報價 (v1)</div></div>
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>項目名稱</th><th class="colspec">規格說明 / 備註</th><th class="r">數量</th><th class="r">單位</th><th class="r">單價</th><th class="r">總價</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="name">客廳｜重做收納牆</td>
+          <td class="spec colspec">低甲醛木芯板、天然木皮、烤漆收邊<span class="meta"><span class="seg">空間：客廳</span><span class="d">；</span><span class="seg">施工類別：木工</span><span class="d">；</span><span class="seg">材料準備方：工班自備</span><span class="d">；</span><span class="seg">規格說明：低甲醛木芯板、天然木皮、烤漆收邊</span><span class="d">；</span><span class="seg">尺寸：420 x 240 x 45 cm</span></span></td>
+          <td class="r qty num">1</td><td class="r unit">式</td><td class="r price num">$78,000</td><td class="r tot num">$78,000</td>
+        </tr>
+        <tr>
+          <td class="name">主臥｜保留一側梳妝桌</td>
+          <td class="spec colspec">低甲醛木芯板、天然木皮、烤漆收邊<span class="meta"><span class="seg">空間：主臥</span><span class="d">；</span><span class="seg">施工類別：木工</span><span class="d">；</span><span class="seg">材料準備方：工班自備</span><span class="d">；</span><span class="seg">規格說明：低甲醛木芯板、天然木皮、烤漆收邊</span><span class="d">；</span><span class="seg">尺寸：120 x 75 x 45 cm</span></span></td>
+          <td class="r qty num">1</td><td class="r unit">式</td><td class="r price num">$28,000</td><td class="r tot num">$28,000</td>
+        </tr>
+        <tr>
+          <td class="name">書房｜視訊背景牆</td>
+          <td class="spec colspec">低甲醛木芯板、天然木皮、烤漆收邊<span class="meta"><span class="seg">空間：書房</span><span class="d">；</span><span class="seg">施工類別：木工</span><span class="d">；</span><span class="seg">材料準備方：工班自備</span><span class="d">；</span><span class="seg">規格說明：低甲醛木芯板、天然木皮、烤漆收邊</span><span class="d">；</span><span class="seg">尺寸：260 x 240 x 12 cm</span></span></td>
+          <td class="r qty num">1</td><td class="r unit">式</td><td class="r price num">$52,000</td><td class="r tot num">$52,000</td>
+        </tr>
+        <tr>
+          <td class="name">書房｜雙人工作桌</td>
+          <td class="spec colspec">低甲醛木芯板、天然木皮、烤漆收邊<span class="meta"><span class="seg">空間：書房</span><span class="d">；</span><span class="seg">施工類別：木工</span><span class="d">；</span><span class="seg">材料準備方：工班自備</span><span class="d">；</span><span class="seg">規格說明：低甲醛木芯板、天然木皮、烤漆收邊</span><span class="d">；</span><span class="seg">尺寸：280 x 75 x 60 cm</span></span></td>
+          <td class="r qty num">1</td><td class="r unit">式</td><td class="r price num">$46,000</td><td class="r tot num">$46,000</td>
+        </tr>
+        <tr>
+          <td class="name">主臥 / 更衣室｜入口圓弧收邊</td>
+          <td class="spec colspec">低甲醛木芯板、天然木皮、烤漆收邊<span class="meta"><span class="seg">空間：主臥 / 更衣室</span><span class="d">；</span><span class="seg">施工類別：木工</span><span class="d">；</span><span class="seg">材料準備方：工班自備</span><span class="d">；</span><span class="seg">規格說明：低甲醛木芯板、天然木皮、烤漆收邊</span><span class="d">；</span><span class="seg">尺寸：90 x 240 x 12 cm</span></span></td>
+          <td class="r qty num">1</td><td class="r unit">式</td><td class="r price num">$22,000</td><td class="r tot num">$22,000</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="seclabel"><div class="l">議價歷史</div></div>
+  <div class="hist">
+    <div class="hcard">
+      <div class="h-top"><span class="ver">v1</span><span class="badge">最新</span><span class="who">李建宏</span><span class="when num">2026/06/17 上午01:20</span></div>
+      <div class="note">由報價單帶入：<span class="seg">木工</span><span class="d">·</span><span class="seg">木作工程（5 項）</span></div>
+      <div class="row2"><span class="add">+5 新增</span><span class="amt num">$226,000</span><span class="items num">5 項</span></div>
+    </div>
+  </div>
+
+</div></body></html>

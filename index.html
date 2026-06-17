@@ -1,0 +1,74 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>造境全屋定製 · 介面改版預覽</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#dde3e8;color:#16212b}
+header{position:sticky;top:0;z-index:50;background:#0b3642;color:#fff;padding:10px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+header h1{font-size:15px;font-weight:700}
+header .sp{flex:1}
+.toggle{display:inline-flex;background:rgba(255,255,255,.12);border-radius:999px;padding:3px}
+.toggle button{font-size:12px;font-weight:700;color:rgba(255,255,255,.7);background:none;border:0;border-radius:999px;padding:6px 14px;cursor:pointer}
+.toggle button.on{background:#fff;color:#0b3642}
+.nav{background:#0f5c6d;padding:7px 16px;position:sticky;top:43px;z-index:49;display:flex;gap:6px;flex-wrap:wrap;box-shadow:0 1px 4px rgba(0,0,0,.2)}
+.nav a{font-size:11px;color:#fff;background:rgba(255,255,255,.13);border-radius:6px;padding:3px 8px;text-decoration:none}
+.nav a:hover{background:rgba(255,255,255,.3)}
+main{padding:16px;display:flex;flex-direction:column;gap:20px;max-width:1480px;margin:0 auto}
+.sec{scroll-margin-top:96px}
+.sec .bar{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.sec .idx{font-size:12px;font-weight:800;color:#fff;background:#0f5c6d;border-radius:7px;padding:2px 9px}
+.sec .ttl{font-size:16px;font-weight:700;color:#0b3642}
+.sec .slug{font-size:11px;color:#5b6b75}
+.sec .open{margin-left:auto;font-size:11px;color:#0f5c6d;text-decoration:none;font-weight:700}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.col{background:#eef2f4;border:1px solid #c3ccd2;border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+.col .hd{font-size:12px;font-weight:700;color:#fff;background:#475569;padding:7px 13px;position:sticky;top:0}
+.col.a .hd{background:#0f5c6d}
+.bd{height:80vh;overflow:auto;padding:10px;background:#cfd6db}
+.bd img{width:100%;display:block;border:1px solid #d6dde4;border-radius:8px;background:#fff}
+.bd.mob img{max-width:390px;margin:0 auto}
+footer{padding:24px;text-align:center;font-size:12px;color:#5b6b75}
+</style></head><body>
+<header>
+  <h1>造境全屋定製 · 介面改版預覽（原版 / 新版對照 · 25 頁）</h1>
+  <span class="sp"></span>
+  <div class="toggle">
+    <button id="bd" class="on" onclick="setMode('d')">桌面</button>
+    <button id="bm" onclick="setMode('m')">手機 390（PWA）</button>
+  </div>
+</header>
+<nav class="nav" id="nav"></nav>
+<main id="main"></main>
+<footer>原版＝現行系統頁面；新版＝介面改版後設計稿。共 25 頁，可切換桌面／手機（PWA）檢視。</footer>
+<script>
+var PAGES=[
+ ["pm-projects","專案總覽"],["pm-leads","客戶／線索清單"],["pm-leads-new","客戶建檔"],["pm-quotations","報價管理"],["pm-schedule","排程管理"],
+ ["proj-client-quote","業主報價合約"],["proj-contract","合約"],["proj-cost-sheet","成本彙算"],["proj-discussion","每日討論"],["proj-dispatch","發包詢價"],
+ ["proj-forum","專案討論"],["proj-handover","驗收交付"],["proj-incidents","上報異常"],["proj-materials","材料"],["proj-measurements","丈量"],
+ ["proj-payment-claims","工班請款"],["proj-payments","收付款"],["proj-preliminary","初步洽談"],["proj-punch","釘點缺失"],["proj-quote-sheet","報價單"],
+ ["proj-repairs","保固報修"],["proj-requirements-edit","需求編輯"],["proj-schedule","專案排程"],["proj-selections","選配"],["proj-stages-id","階段詳情"]
+];
+function beforeSrc(slug,m){return 'ba/'+slug+(m==='m'?'-before-m':'-before')+'.png';}
+function afterSrc(slug,m){return 'after/'+slug+(m==='m'?'-m':'-d')+'.png';}
+var nav=document.getElementById('nav'),main=document.getElementById('main');
+PAGES.forEach(function(p,i){
+  var a=document.createElement('a');a.href='#s'+i;a.textContent=(i+1)+'. '+p[1];nav.appendChild(a);
+  var sec=document.createElement('section');sec.className='sec';sec.id='s'+i;
+  sec.innerHTML='<div class="bar"><span class="idx">'+(i+1)+'</span><span class="ttl">'+p[1]+'</span><span class="slug">'+p[0]+'</span><a class="open" href="aligned/'+p[0]+'.html" target="_blank">開啟新版頁面 ↗</a></div>'
+   +'<div class="cmp">'
+   +'<div class="col"><div class="hd">原版（現行）</div><div class="bd" id="bb'+i+'"><img id="ib'+i+'" src="'+beforeSrc(p[0],"d")+'"></div></div>'
+   +'<div class="col a"><div class="hd">新版（改版後）</div><div class="bd" id="ba'+i+'"><img id="ia'+i+'" src="'+afterSrc(p[0],"d")+'"></div></div>'
+   +'</div>';
+  main.appendChild(sec);
+});
+var mode='d';
+function setMode(m){
+  mode=m;document.getElementById('bd').className=m==='d'?'on':'';document.getElementById('bm').className=m==='m'?'on':'';
+  PAGES.forEach(function(p,i){
+    document.getElementById('ib'+i).src=beforeSrc(p[0],m);
+    document.getElementById('ia'+i).src=afterSrc(p[0],m);
+    document.getElementById('bb'+i).className='bd'+(m==='m'?' mob':'');
+    document.getElementById('ba'+i).className='bd'+(m==='m'?' mob':'');
+  });
+}
+</script>
+</body></html>

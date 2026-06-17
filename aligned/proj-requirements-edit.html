@@ -1,0 +1,313 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:960px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .top{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.hero .back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:rgba(255,255,255,.8)}
+.hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero .titlewrap{margin-right:auto}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .enter{display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--teal-ink);font-weight:700;font-size:13px;border-radius:var(--rctrl);padding:9px 14px}
+.hero .preview{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#fff;font-weight:600;font-size:13px;border-radius:var(--rctrl);padding:9px 14px}
+
+.card{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.sectitle{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);margin-bottom:16px;letter-spacing:.01em}
+.sectitle::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.sectitle svg,.sectitle .ico{color:var(--teal)}
+
+.row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px 16px}
+.f{display:flex;flex-direction:column;gap:6px;min-width:0;grid-column:span 1}
+.s1{grid-column:span 1}.s2{grid-column:span 2}.s3{grid-column:span 3}.s4{grid-column:span 4}
+.f .k{font-size:11.5px;font-weight:600;color:var(--sub);letter-spacing:.02em}
+.subnote{font-size:11px;color:var(--faint);margin-top:3px}
+.hint{font-size:11px;color:var(--faint);margin-top:12px}
+.ctrl{width:100%;font-size:13.5px;color:#1f2d38;background:#fff;border:1px solid #e2e8ed;border-radius:9px;padding:0 12px;height:40px;display:flex;align-items:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:border-color .15s,box-shadow .15s}
+.ctrl.ph{color:#aab4bd;font-weight:400}
+.ctrl:not(.ph){font-weight:500}
+.ctrl.sel{justify-content:space-between;gap:6px}
+.ctrl.sel svg{color:#b6c0c8;flex:0 0 auto}
+
+.layout{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+.lay{display:flex;align-items:center;justify-content:space-between;gap:6px;background:#fff;border:1px solid #e2e8ed;border-radius:9px;padding:8px 12px}
+.lay .ln{font-size:12px;font-weight:500;color:var(--sub)}
+.lay .lv{font-size:14px;font-weight:700;color:var(--teal-ink)}
+
+.timerow{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.timerow .day{font-size:12px;font-weight:600;color:var(--teal-ink);min-width:34px}
+.timerow .seg{font-size:12px;color:var(--sub);font-weight:600;flex:0 0 auto}
+.timerow .tpick{font-size:13.5px;font-weight:500;background:#fff;border:1px solid #e2e8ed;border-radius:9px;padding:0 12px;height:40px;display:flex;align-items:center;color:#1f2d38}
+.timerow .dash{color:var(--faint);flex:0 0 auto}
+
+.subhead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.subhead.head{margin-bottom:16px}
+.subhead .l{font-size:13px;font-weight:600;color:var(--teal-ink);display:flex;align-items:center;gap:8px;flex-wrap:wrap;letter-spacing:.01em}
+.subhead .l .ico{color:var(--teal)}
+.subhead .ttl{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);letter-spacing:.01em}
+.subhead .ttl::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.subhead .tag{font-size:11px;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--tint);color:var(--teal-ink)}
+.subhead .tag.faint{background:#f7f8fa;color:#64748b;border:1px solid #e2e8ed}
+.addbtn{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--teal-ink);background:var(--tint);border:1px solid #a7d8d8;border-radius:999px;padding:5px 11px}
+.block{border:1px solid var(--cardline);border-radius:12px;padding:14px;margin-top:10px}
+.block.first{margin-top:0}
+.block .subhead{margin-bottom:12px}
+
+.needhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:12px 0 10px;padding-top:12px;border-top:1px solid #eef1f4;flex-wrap:wrap}
+.needhead .l{font-size:12px;font-weight:600;color:var(--teal-ink)}
+.needhead .l.faint{color:var(--faint)}
+.miniact{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;color:var(--sub);background:#fff;border:1px solid #e2e8ed;border-radius:999px;padding:5px 11px}
+.needline{font-size:12px;font-weight:600;color:var(--teal-ink);margin-bottom:8px}
+.needline.faint{color:var(--faint)}
+.cats{display:flex;flex-wrap:wrap;gap:6px}
+.cat{font-size:11px;font-weight:600;color:var(--sub);background:#fff;border:1px solid #e2e8ed;border-radius:999px;padding:4px 10px;white-space:nowrap}
+
+.footer{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font-size:13px;font-weight:700;border-radius:var(--rctrl);padding:10px 18px}
+.btn.ghost{color:var(--sub);background:#fff;border:1px solid var(--cardline)}
+.btn.save{color:#fff;background:var(--teal-ink)}
+
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero .top{flex-wrap:wrap}
+  .hero .titlewrap{flex:1 1 100%;margin-right:0}
+  .hero .enter,.hero .preview{flex:1 1 auto;justify-content:center}
+  .row{grid-template-columns:repeat(2,1fr)}
+  .s1{grid-column:span 1}
+  .s2,.s3,.s4{grid-column:1/-1}
+  .layout{grid-template-columns:repeat(2,1fr)}
+  .timerow{align-items:flex-start}
+  .timerow .tpick{flex:1 1 auto}
+  .footer{flex-direction:column;align-items:stretch}.footer .btn{width:100%}
+  .footer .btn.save{order:-1}
+}
+</style></head><body><div class="wrap">
+
+  <div class="hero">
+    <div class="top">
+      <span class="back"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m15 18-6-6 6-6"/></svg>返回</span>
+      <div class="titlewrap">
+        <div class="eyebrow">CUSTOMER FILE</div>
+        <h1>客戶資訊＆需求編輯</h1>
+      </div>
+      <span class="enter"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>進入專案</span>
+      <span class="preview">回預覽</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg class=ico width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>業主資訊</div>
+    <div class="row">
+      <div class="f s1"><span class="k">客戶姓名</span><span class="ctrl">林柏翰</span></div>
+      <div class="f s1"><span class="k">性別</span><span class="ctrl sel">先生<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">聯絡電話</span><span class="ctrl num">0918-527-346</span></div>
+      <div class="f s1"><span class="k">LINE ID</span><span class="ctrl ph">line.id</span></div>
+      <div class="f s1"><span class="k">裝修類型</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">職業</span><span class="ctrl">科技業產品經理</span></div>
+      <div class="f s1"><span class="k">客戶來源</span><span class="ctrl sel">朋友介紹<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">介紹人</span><span class="ctrl">舊客戶王小姐</span></div>
+      <div class="f s2"><span class="k">E-MAIL信箱</span><span class="ctrl">lin.renovation.demo@example.com</span></div>
+      <div class="f s2"><span class="k">戶籍地址／聯絡地址</span><span class="ctrl ph">戶籍地址／聯絡地址</span></div>
+      <div class="f s2"><span class="k">風格偏好</span><span class="ctrl">現代 / 簡約</span></div>
+      <div class="f s2"><span class="k">總預算（元）</span><span class="ctrl num">220萬</span></div>
+      <div class="f s2"><span class="k">開工日期</span><span class="ctrl ph">mm/dd/yyyy</span></div>
+      <div class="f s2"><span class="k">入住日期</span><span class="ctrl ph">mm/dd/yyyy</span></div>
+    </div>
+    <div class="hint">可不填，代表可配合完工驗收。</div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg class=ico width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v10h14V10"/></svg>房屋資訊</div>
+    <div class="row">
+      <div class="f s1"><span class="k">房屋狀態</span><span class="ctrl sel">中古屋<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">房屋類型</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+      <div class="f s1"><span class="k">屋齡（年）</span><span class="ctrl num">18</span></div>
+      <div class="f s1"><span class="k">社區／建案名稱</span><span class="ctrl">文山靜巷華廈</span></div>
+      <div class="f s2"><span class="k">施工地址</span><span class="ctrl">台北市文山區木柵路二段88巷12號6樓</span></div>
+      <div class="f s1"><span class="k">室內坪數</span><span class="ctrl num">32.5</span></div>
+      <div class="f s1"><span class="k">規劃坪數</span><span class="ctrl num ph">35</span></div>
+      <div class="f s1"><span class="k">棟別</span><span class="ctrl ph">A棟</span></div>
+      <div class="f s1"><span class="k">居住樓層</span><span class="ctrl num">6</span></div>
+      <div class="f s1"><span class="k">所有樓層</span><span class="ctrl num ph">12</span></div>
+      <div class="f s1"><span class="k">電梯</span><span class="ctrl">有電梯</span></div>
+      <div class="f s1"><span class="k">長cm</span><span class="ctrl num">145</span></div>
+      <div class="f s1"><span class="k">寬cm</span><span class="ctrl num">110</span></div>
+      <div class="f s1"><span class="k">高cm</span><span class="ctrl num">220</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg class=ico width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>格局</div>
+    <div class="layout">
+      <div class="lay"><span class="ln">房間</span><span class="lv num">3</span></div>
+      <div class="lay"><span class="ln">衛浴</span><span class="lv num">2</span></div>
+      <div class="lay"><span class="ln">客廳</span><span class="lv num">2</span></div>
+      <div class="lay"><span class="ln">餐廳</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">廚房</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">陽台</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">露台</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">平面車位</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">機械車位</span><span class="lv num">0</span></div>
+      <div class="lay"><span class="ln">獨立車庫</span><span class="lv num">0</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="sectitle"><svg class=ico width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>管委會規定施工時間</div>
+    <div class="timerow"><span class="day">平日</span><span class="seg">起</span><span class="tpick num">07:00</span><span class="dash">–</span><span class="seg">迄</span><span class="tpick num">21:00</span></div>
+    <div class="timerow"><span class="day">假日</span><span class="seg">起</span><span class="tpick num">07:00</span><span class="dash">–</span><span class="seg">迄</span><span class="tpick num">21:00</span></div>
+    <div class="row">
+      <div class="f s4"><span class="k">管委會備註</span><span class="ctrl ph">管委會備註</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="subhead head"><div class="ttl"><svg class=ico width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.4"/><path d="M3.5 20a6 6 0 0 1 11 0M15 20a5 5 0 0 1 5.5-1"/></svg>家庭成員</div><span class="addbtn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增成員</span></div>
+    <div class="block first">
+      <div class="subhead"><div class="l">成員 1<span class="tag">本人</span></div></div>
+      <div class="row">
+        <div class="f s1"><span class="k">身分</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        <div class="f s1"><span class="k">性別</span><span class="ctrl sel ph">—<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        <div class="f s1"><span class="k">年齡</span><span class="ctrl ph">年齡</span></div>
+        <div class="f s1"><span class="k">身高cm</span><span class="ctrl ph">身高cm</span></div>
+        <div class="f s2"><span class="k">生活型態</span><span class="ctrl sel ph">請選擇<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></span></div>
+        <div class="f s2"><span class="k">設計備註</span><span class="ctrl ph">設計備註</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="subhead head"><div class="ttl"><svg class=ico width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M15 9v12"/></svg>空間設計需求</div><span class="addbtn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增空間</span></div>
+
+    <div class="block first">
+      <div class="subhead"><div class="l">空間 1<span class="tag">客廳</span></div><span class="miniact">+ 子空間</span></div>
+      <div class="row">
+        <div class="f s2"><span class="k">空間名稱</span><span class="ctrl ph">空間名稱</span></div>
+        <div class="f s1"><span class="k">坪數（坪）</span><span class="ctrl ph">坪</span></div>
+        <div class="f s1"><span class="k">風格</span><span class="ctrl ph">風格</span></div>
+        <div class="f s2"><span class="k">預算比例（%）</span><span class="ctrl ph">%</span></div>
+        <div class="f s2"><span class="k">長 × 寬 × 高 (cm)</span><span class="ctrl ph">長 × 寬 × 高 (cm)</span></div>
+        <div class="f s4"><span class="k">設計備註</span><span class="ctrl ph">設計備註</span></div>
+        <div class="f s4"><span class="k">空間示意圖</span><span class="ctrl ph">空間示意圖</span></div>
+      </div>
+      <div class="needhead"><span class="l">施工需求 1 項</span><span class="miniact">+ 需求加入</span></div>
+      <div class="needline">需求 1 <span class="cat" style="margin-left:6px">加入照片</span></div>
+      <div class="needline faint">工程分類</div>
+      <div class="cats"><span class="cat">拆除工程</span><span class="cat">保護工程</span><span class="cat">假設工程</span><span class="cat">泥作工程</span><span class="cat">水電工程</span><span class="cat">弱電工程</span><span class="cat">金屬工程</span><span class="cat">門窗工程</span><span class="cat">木作工程</span><span class="cat">系統櫃工程</span><span class="cat">油漆/塗裝工程</span><span class="cat">壓克力及玻璃工程</span><span class="cat">其他工程</span></div>
+    </div>
+
+    <div class="block">
+      <div class="subhead"><div class="l">空間 2<span class="tag">廚房</span></div><span class="miniact">+ 子空間</span></div>
+      <div class="row">
+        <div class="f s2"><span class="k">空間名稱</span><span class="ctrl ph">空間名稱</span></div>
+        <div class="f s1"><span class="k">坪數（坪）</span><span class="ctrl ph">坪</span></div>
+        <div class="f s1"><span class="k">風格</span><span class="ctrl ph">風格</span></div>
+        <div class="f s2"><span class="k">預算比例（%）</span><span class="ctrl ph">%</span></div>
+        <div class="f s2"><span class="k">長 × 寬 × 高 (cm)</span><span class="ctrl ph">長 × 寬 × 高 (cm)</span></div>
+        <div class="f s4"><span class="k">設計備註</span><span class="ctrl ph">設計備註</span></div>
+        <div class="f s4"><span class="k">空間示意圖</span><span class="ctrl ph">空間示意圖</span></div>
+      </div>
+      <div class="needhead"><span class="l">施工需求 1 項</span><span class="miniact">+ 需求加入</span></div>
+      <div class="needline">需求 1 <span class="cat" style="margin-left:6px">加入照片</span></div>
+      <div class="needline faint">工程分類</div>
+      <div class="cats"><span class="cat">拆除工程</span><span class="cat">保護工程</span><span class="cat">假設工程</span><span class="cat">泥作工程</span><span class="cat">水電工程</span><span class="cat">弱電工程</span><span class="cat">金屬工程</span><span class="cat">門窗工程</span><span class="cat">木作工程</span><span class="cat">系統櫃工程</span><span class="cat">油漆/塗裝工程</span><span class="cat">壓克力及玻璃工程</span><span class="cat">其他工程</span></div>
+    </div>
+
+    <div class="block">
+      <div class="subhead"><div class="l">空間 3<span class="tag">主臥</span></div><span class="miniact">+ 子空間</span></div>
+      <div class="row">
+        <div class="f s2"><span class="k">空間名稱</span><span class="ctrl ph">空間名稱</span></div>
+        <div class="f s1"><span class="k">坪數（坪）</span><span class="ctrl ph">坪</span></div>
+        <div class="f s1"><span class="k">風格</span><span class="ctrl ph">風格</span></div>
+        <div class="f s2"><span class="k">預算比例（%）</span><span class="ctrl ph">%</span></div>
+        <div class="f s2"><span class="k">長 × 寬 × 高 (cm)</span><span class="ctrl ph">長 × 寬 × 高 (cm)</span></div>
+        <div class="f s4"><span class="k">設計備註</span><span class="ctrl ph">設計備註</span></div>
+        <div class="f s4"><span class="k">空間示意圖</span><span class="ctrl ph">空間示意圖</span></div>
+      </div>
+      <div class="needhead"><span class="l">施工需求 1 項</span><span class="miniact">+ 需求加入</span></div>
+      <div class="needline">需求 1 <span class="cat" style="margin-left:6px">加入照片</span></div>
+      <div class="needline faint">工程分類</div>
+      <div class="cats"><span class="cat">拆除工程</span><span class="cat">保護工程</span><span class="cat">假設工程</span><span class="cat">泥作工程</span><span class="cat">水電工程</span><span class="cat">弱電工程</span><span class="cat">金屬工程</span><span class="cat">門窗工程</span><span class="cat">木作工程</span><span class="cat">系統櫃工程</span><span class="cat">油漆/塗裝工程</span><span class="cat">壓克力及玻璃工程</span><span class="cat">其他工程</span></div>
+    </div>
+
+    <div class="block">
+      <div class="subhead"><div class="l">空間 4<span class="tag">書房</span></div><span class="miniact">+ 子空間</span></div>
+      <div class="row">
+        <div class="f s2"><span class="k">空間名稱</span><span class="ctrl ph">空間名稱</span></div>
+        <div class="f s1"><span class="k">坪數（坪）</span><span class="ctrl ph">坪</span></div>
+        <div class="f s1"><span class="k">風格</span><span class="ctrl ph">風格</span></div>
+        <div class="f s2"><span class="k">預算比例（%）</span><span class="ctrl ph">%</span></div>
+        <div class="f s2"><span class="k">長 × 寬 × 高 (cm)</span><span class="ctrl ph">長 × 寬 × 高 (cm)</span></div>
+        <div class="f s4"><span class="k">設計備註</span><span class="ctrl ph">設計備註</span></div>
+        <div class="f s4"><span class="k">空間示意圖</span><span class="ctrl ph">空間示意圖</span></div>
+      </div>
+      <div class="needhead"><span class="l">施工需求 1 項</span><span class="miniact">+ 需求加入</span></div>
+      <div class="needline">需求 1 <span class="cat" style="margin-left:6px">加入照片</span></div>
+      <div class="needline faint">工程分類</div>
+      <div class="cats"><span class="cat">拆除工程</span><span class="cat">保護工程</span><span class="cat">假設工程</span><span class="cat">泥作工程</span><span class="cat">水電工程</span><span class="cat">弱電工程</span><span class="cat">金屬工程</span><span class="cat">門窗工程</span><span class="cat">木作工程</span><span class="cat">系統櫃工程</span><span class="cat">油漆/塗裝工程</span><span class="cat">壓克力及玻璃工程</span><span class="cat">其他工程</span></div>
+    </div>
+
+    <div class="block">
+      <div class="subhead"><div class="l">空間 5<span class="tag">客衛浴</span></div><span class="miniact">+ 子空間</span></div>
+      <div class="row">
+        <div class="f s2"><span class="k">空間名稱</span><span class="ctrl ph">空間名稱</span></div>
+        <div class="f s1"><span class="k">坪數（坪）</span><span class="ctrl ph">坪</span></div>
+        <div class="f s1"><span class="k">風格</span><span class="ctrl ph">風格</span></div>
+        <div class="f s2"><span class="k">預算比例（%）</span><span class="ctrl ph">%</span></div>
+        <div class="f s2"><span class="k">長 × 寬 × 高 (cm)</span><span class="ctrl ph">長 × 寬 × 高 (cm)</span></div>
+        <div class="f s4"><span class="k">設計備註</span><span class="ctrl ph">設計備註</span></div>
+        <div class="f s4"><span class="k">空間示意圖</span><span class="ctrl ph">空間示意圖</span></div>
+      </div>
+      <div class="needhead"><span class="l">施工需求 1 項</span><span class="miniact">+ 需求加入</span></div>
+      <div class="needline">需求 1 <span class="cat" style="margin-left:6px">加入照片</span></div>
+      <div class="needline faint">工程分類</div>
+      <div class="cats"><span class="cat">拆除工程</span><span class="cat">保護工程</span><span class="cat">假設工程</span><span class="cat">泥作工程</span><span class="cat">水電工程</span><span class="cat">弱電工程</span><span class="cat">金屬工程</span><span class="cat">門窗工程</span><span class="cat">木作工程</span><span class="cat">系統櫃工程</span><span class="cat">油漆/塗裝工程</span><span class="cat">壓克力及玻璃工程</span><span class="cat">其他工程</span></div>
+    </div>
+
+    <div class="block">
+      <div class="subhead"><div class="l">空間 6<span class="tag">衛浴</span><span class="tag faint">主臥 的子空間</span></div><span class="miniact">+ 子空間</span></div>
+      <div class="row">
+        <div class="f s2"><span class="k">空間名稱</span><span class="ctrl ph">空間名稱</span></div>
+        <div class="f s1"><span class="k">坪數（坪）</span><span class="ctrl ph">坪</span></div>
+        <div class="f s1"><span class="k">風格</span><span class="ctrl ph">風格</span></div>
+        <div class="f s2"><span class="k">預算比例（%）</span><span class="ctrl ph">%</span></div>
+        <div class="f s2"><span class="k">長 × 寬 × 高 (cm)</span><span class="ctrl ph">長 × 寬 × 高 (cm)</span></div>
+        <div class="f s4"><span class="k">設計備註</span><span class="ctrl ph">設計備註</span></div>
+        <div class="f s4"><span class="k">空間示意圖</span><span class="ctrl ph">空間示意圖</span></div>
+      </div>
+      <div class="needhead"><span class="l">施工需求 1 項</span><span class="miniact">+ 需求加入</span></div>
+      <div class="needline">需求 1 <span class="cat" style="margin-left:6px">加入照片</span></div>
+      <div class="needline faint">工程分類</div>
+      <div class="cats"><span class="cat">拆除工程</span><span class="cat">保護工程</span><span class="cat">假設工程</span><span class="cat">泥作工程</span><span class="cat">水電工程</span><span class="cat">弱電工程</span><span class="cat">金屬工程</span><span class="cat">門窗工程</span><span class="cat">木作工程</span><span class="cat">系統櫃工程</span><span class="cat">油漆/塗裝工程</span><span class="cat">壓克力及玻璃工程</span><span class="cat">其他工程</span></div>
+    </div>
+
+    <div class="block">
+      <div class="subhead"><div class="l">空間 7<span class="tag">更衣室</span><span class="tag faint">主臥 的子空間</span></div><span class="miniact">+ 子空間</span></div>
+      <div class="row">
+        <div class="f s2"><span class="k">空間名稱</span><span class="ctrl ph">空間名稱</span></div>
+        <div class="f s1"><span class="k">坪數（坪）</span><span class="ctrl ph">坪</span></div>
+        <div class="f s1"><span class="k">風格</span><span class="ctrl ph">風格</span></div>
+        <div class="f s2"><span class="k">預算比例（%）</span><span class="ctrl ph">%</span></div>
+        <div class="f s2"><span class="k">長 × 寬 × 高 (cm)</span><span class="ctrl ph">長 × 寬 × 高 (cm)</span></div>
+        <div class="f s4"><span class="k">設計備註</span><span class="ctrl ph">設計備註</span></div>
+        <div class="f s4"><span class="k">空間示意圖</span><span class="ctrl ph">空間示意圖</span></div>
+      </div>
+      <div class="needhead"><span class="l">施工需求 1 項</span><span class="miniact">+ 需求加入</span></div>
+      <div class="needline">需求 1 <span class="cat" style="margin-left:6px">加入照片</span></div>
+      <div class="needline faint">工程分類</div>
+      <div class="cats"><span class="cat">拆除工程</span><span class="cat">保護工程</span><span class="cat">假設工程</span><span class="cat">泥作工程</span><span class="cat">水電工程</span><span class="cat">弱電工程</span><span class="cat">金屬工程</span><span class="cat">門窗工程</span><span class="cat">木作工程</span><span class="cat">系統櫃工程</span><span class="cat">油漆/塗裝工程</span><span class="cat">壓克力及玻璃工程</span><span class="cat">其他工程</span></div>
+    </div>
+
+    <div class="needhead"><span class="l faint">項目名稱</span></div>
+    <div class="cats"><span class="cat">滑門/開門 半身櫃</span><span class="cat">滑門/開門 高櫃</span><span class="cat">自訂項目</span></div>
+  </div>
+
+  <div class="footer">
+    <span class="btn ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-1"/></svg>返回</span>
+    <span class="btn ghost"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m15 14 5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h1"/></svg>復原</span>
+    <span class="btn save"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>儲存</span>
+  </div>
+
+</div></body></html>

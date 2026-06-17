@@ -1,0 +1,53 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .top{display:flex;align-items:center;gap:12px}
+.hero h1{font-size:22px;font-weight:600;margin-right:auto}
+.hero .search{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);border-radius:var(--rctrl);padding:8px 12px;color:rgba(255,255,255,.75);font-size:13px}
+.hero .search span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hero .add{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;background:#fff;color:var(--teal-ink);font-weight:700;font-size:13px;border-radius:var(--rctrl);padding:9px 14px}
+.htabs{display:flex;gap:8px;margin-top:14px}
+.htabs .t{flex:1;justify-content:center;display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:rgba(255,255,255,.72);padding:10px 14px;border:1px solid transparent;border-radius:10px}
+.htabs .t b{font-weight:700;font-size:12px;min-width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:rgba(255,255,255,.16);color:#fff}
+.htabs .t.on{color:#fff;background:rgba(255,255,255,.10);border-color:rgba(255,255,255,.22)}
+.htabs .t.on b{background:rgba(255,255,255,.24)}
+.seclabel{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:4px 2px 0}
+.seclabel .l{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--teal-ink);letter-spacing:.01em}
+.seclabel .l::before{content:"";width:3px;height:16px;border-radius:2px;background:var(--teal);flex:0 0 auto}
+.seclabel .r{font-size:12px;color:var(--sub);font-weight:600;flex:0 0 auto;white-space:nowrap}
+.empty{background:#fff;border:1px solid #e2e8ed;border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:40px 20px;text-align:center;color:var(--sub);font-size:13.5px}
+.empty svg{color:#b6c0c8;margin:0 auto 12px;display:block}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero .top{flex-wrap:wrap}.hero h1{margin-right:auto}
+  .hero .search{order:3;flex:1 1 100%}
+  .hero .add{flex:1 1 100%;justify-content:center;order:2}
+  .htabs{gap:6px}.htabs .t{padding:8px 4px;font-size:12px;flex-direction:column;gap:3px;border-radius:8px}
+}
+</style></head><body><div class="wrap">
+
+  <div class="hero">
+    <div class="top">
+      <h1>PM 客戶管理</h1>
+      <span class="search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg><span>搜尋客戶姓名、電話、社區名稱、地址、介紹人、專案號碼...</span></span>
+      <span class="add"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>新增客戶</span>
+    </div>
+    <div class="htabs">
+      <span class="t on">我的客戶<b class="num">0</b></span>
+      <span class="t">轉介紹客戶<b class="num">1</b></span>
+      <span class="t">總部派發<b class="num">2</b></span>
+    </div>
+  </div>
+
+  <div class="seclabel"><div class="l">我的客戶</div><div class="r"><span class="num">0</span> 筆</div></div>
+
+  <div class="empty">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    尚未建立自己的客戶
+  </div>
+
+</div></body></html>

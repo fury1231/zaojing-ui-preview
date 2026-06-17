@@ -1,0 +1,40 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>工班請款</title><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--sub);margin:0 2px;min-height:40px}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero .eyebrow svg{color:rgba(255,255,255,.66)}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .flow{margin-top:8px;font-size:13px;color:rgba(255,255,255,.78);display:flex;flex-wrap:wrap;align-items:center;gap:2px 0;word-break:keep-all}
+.hero .flow .seg{white-space:nowrap}.hero .flow .arr{color:rgba(255,255,255,.5);margin:0 6px}
+.card{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.empty{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;padding:48px 20px}
+.empty .ic{color:#cbd5d1;margin-bottom:4px}
+.empty .t{font-size:16px;font-weight:600;color:var(--teal-ink)}
+.empty .d{font-size:13px;color:var(--faint);max-width:480px;line-height:1.6}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}
+  .card.empty{padding:40px 16px}
+}
+</style></head><body><div class="wrap">
+
+  <span class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>返回</span>
+
+  <div class="hero">
+    <span class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2z"/><path d="M13 5v14"/></svg>請款審核</span>
+    <h1>工班請款</h1>
+    <div class="flow"><span class="seg">工班送出</span><span class="arr">→</span><span class="seg">總部 / 業主驗收</span><span class="arr">→</span><span class="seg">店長/總部審</span><span class="arr">→</span><span class="seg">會計付款</span></div>
+  </div>
+
+  <div class="card empty">
+    <span class="ic"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"/><path d="M12 6v2"/><path d="M12 16v2"/><path d="M14 8H9.5a1.5 1.5 0 0 0 0 3h2a1.5 1.5 0 0 1 0 3H7"/></svg></span>
+    <div class="t">尚無工班請款</div>
+    <div class="d">工班完工驗收後在工班端送出請款，會出現在這裡進入審核鏈。</div>
+  </div>
+
+</div></body></html>

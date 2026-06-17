@@ -1,0 +1,46 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>合約</title><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--sub);margin:0 2px}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .top{display:flex;align-items:flex-start;gap:14px}
+.hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .desc{font-size:13px;color:rgba(255,255,255,.74);margin-top:6px}
+.hero .gen{flex:0 0 auto;display:inline-flex;align-items:center;gap:7px;background:#fff;color:var(--teal-ink);font-weight:700;font-size:13px;border-radius:var(--rctrl);padding:10px 16px;white-space:nowrap}
+.card{background:#fff;border:1px solid var(--cardline);border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.empty{text-align:center;padding:40px 24px}
+.empty .eico{color:#9aa7b1;margin-bottom:12px}
+.empty .etitle{font-size:16px;font-weight:600;color:var(--teal-ink)}
+.empty .etext{font-size:13px;color:var(--sub);margin-top:8px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.75}
+.empty .etext .lnk{color:var(--teal);font-weight:600}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero .top{flex-direction:column}.hero .gen{width:100%;justify-content:center;margin-top:4px}
+  .card{padding:16px}.empty{padding:32px 16px}
+}
+</style></head><body><div class="wrap">
+
+  <span class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>返回</span>
+
+  <div class="hero">
+    <div class="top">
+      <div style="margin-right:auto">
+        <div class="eyebrow">合約</div>
+        <h1>合約</h1>
+        <div class="desc">報價單 + 設計圖 + 付款條件 + 工期，合一簽署</div>
+      </div>
+      <span class="gen"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/></svg>由報價生成合約</span>
+    </div>
+  </div>
+
+  <div class="card empty">
+    <div class="eico"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg></div>
+    <div class="etitle">尚未產生合約</div>
+    <div class="etext">合約須以「業主已簽認」的客戶報價單為基礎自動生成。請先到 <span class="lnk">客戶報價單</span> 完成業主簽認，再回到本頁點「由報價生成合約」。</div>
+  </div>
+
+</div></body></html>

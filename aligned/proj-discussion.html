@@ -1,0 +1,56 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><style>
+:root{--ink:#16212b;--sub:#475569;--faint:#6b7280;--teal:#0f5c6d;--teal-ink:#0b3642;--cardline:rgba(11,54,66,.15);--rcard:14px;--rctrl:10px;--tint:#ecf6f6}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Noto Sans TC",system-ui,sans-serif;background:#e3e9ee;color:var(--ink);font-size:14px;line-height:1.5;padding:16px}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:10px}
+.num{font-variant-numeric:tabular-nums}svg{vertical-align:middle}
+.hero{border-radius:var(--rcard);padding:18px 22px;color:#fff;background:radial-gradient(circle at 88% 12%,rgba(218,168,72,.24) 0%,rgba(218,168,72,0) 26%),radial-gradient(circle at 12% 0%,rgba(76,201,240,.2) 0%,rgba(76,201,240,0) 30%),linear-gradient(135deg,#061922 0%,#0b3642 48%,#0f5c6d 80%,#041018 100%)}
+.hero .back{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:rgba(255,255,255,.78);margin-bottom:12px}
+.hero .eyebrow{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6)}
+.hero h1{font-size:22px;font-weight:600;margin-top:4px}
+.hero .desc{font-size:13px;color:rgba(255,255,255,.74);margin-top:6px}
+.hero .desc .seg{white-space:nowrap}
+.card{background:#fff;border:1px solid #e2e8ed;border-radius:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 8px 24px -16px rgba(11,54,66,.18);padding:20px 22px}
+.searchrow{display:flex;align-items:center;gap:10px}
+.searchrow .box{flex:1;min-width:0;display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e2e8ed;border-radius:9px;height:40px;padding:0 12px;color:#aab4bd;font-size:13.5px}
+.searchrow .box svg{color:#b6c0c8;flex:0 0 auto}
+.searchrow .go{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;height:40px;background:var(--teal-ink);color:#fff;font-weight:700;font-size:13px;border-radius:9px;padding:0 18px}
+.report{display:flex;align-items:center;justify-content:center;gap:8px;font-size:15px;font-weight:700;background:var(--teal-ink);color:#fff;border:none;padding:16px}
+.report .ico{color:#fff}
+.empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:48px 16px;border:1px dashed var(--cardline);background:#f7f8fa;box-shadow:none}
+.empty .ico{color:#cbd5d1}
+.empty .txt{font-size:14px;font-weight:600;color:var(--faint)}
+.ico{color:var(--teal)}
+@media(max-width:560px){
+  body{padding:12px}.wrap{gap:10px}
+  .hero{padding:16px}.hero h1{font-size:20px}
+  .hero .desc{white-space:normal;word-break:keep-all}
+  .searchrow{flex-wrap:wrap}.searchrow .box{flex:1 1 100%}.searchrow .go{flex:1 1 100%}
+  .empty{padding:40px 12px}
+}
+</style></head><body><div class="wrap">
+
+  <div class="hero">
+    <a class="back"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>返回</a>
+    <div class="eyebrow">每日討論</div>
+    <h1>工地討論區</h1>
+    <div class="desc"><span class="seg">依日期分組</span>；<span class="seg">可全文搜尋</span>；<span class="seg">PM / 工程總監 / 工班 / 店長均可發文</span></div>
+  </div>
+
+  <div class="card">
+    <div class="searchrow">
+      <span class="box"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>搜尋內容…</span>
+      <span class="go">搜尋</span>
+    </div>
+  </div>
+
+  <div class="card report">
+    <svg class="ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>回報
+  </div>
+
+  <div class="card empty">
+    <svg class="ico" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    <div class="txt">尚無討論紀錄</div>
+  </div>
+
+</div></body></html>
