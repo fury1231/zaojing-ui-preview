@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>造境全屋定製 · 工班端系統更新報告</title>
+<style>
+  :root{
+    --ink:#0b1f26;--sub:#46565e;--faint:#7c8a90;--teal:#0f5c6d;--teal-ink:#0b3642;
+    --line:#e3e9ec;--bg:#eef2f4;--gold:#c69a4c;--ok:#0f766e;
+  }
+  *{margin:0;box-sizing:border-box}
+  body{font-family:"Noto Sans TC",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.62;-webkit-font-smoothing:antialiased}
+  .hero{color:#fff;padding:50px 24px 64px;text-align:center;
+    background:
+      radial-gradient(circle at 86% 14%, rgba(218,168,72,.28) 0%, rgba(218,168,72,0) 28%),
+      radial-gradient(circle at 12% 6%, rgba(76,201,240,.20) 0%, rgba(76,201,240,0) 32%),
+      linear-gradient(135deg,#061922 0%,#0b3642 46%,#0f5c6d 82%,#041018 100%);}
+  .hero .brand{font-size:13px;font-weight:600;letter-spacing:.32em;color:rgba(255,255,255,.66);text-transform:uppercase}
+  .hero h1{font-size:30px;font-weight:700;margin-top:14px}
+  .hero h1 b{color:#ffd98a}
+  .hero .date{margin-top:10px;font-size:13.5px;color:rgba(255,255,255,.7)}
+  .hero p{max-width:640px;margin:14px auto 0;font-size:15px;color:rgba(255,255,255,.84)}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px 70px}
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:-40px auto 36px;position:relative;z-index:2}
+  .stat{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px 14px;text-align:center;box-shadow:0 10px 30px -20px rgba(11,54,66,.5)}
+  .stat .v{font-size:24px;font-weight:800;color:var(--teal-ink)}
+  .stat .k{font-size:12px;color:var(--faint);font-weight:600;margin-top:2px}
+  h2.sec{font-size:13px;font-weight:800;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;margin:38px 2px 16px;display:flex;align-items:center;gap:10px}
+  h2.sec::before{content:"";width:22px;height:2px;background:var(--gold)}
+  /* 三件事 timeline */
+  .work{display:flex;flex-direction:column;gap:12px}
+  .item{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px;display:grid;grid-template-columns:46px 1fr;gap:16px;box-shadow:0 1px 2px rgba(15,23,42,.04)}
+  .item .no{width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,#0b3642,#0f5c6d);color:#fff;font-size:19px;font-weight:800;display:flex;align-items:center;justify-content:center}
+  .item h3{font-size:17px;font-weight:700;color:var(--teal-ink)}
+  .item .meta{font-size:12px;color:var(--faint);font-weight:600;margin-top:2px}
+  .item .meta code{background:#f1f5f6;border-radius:5px;padding:1px 6px;color:var(--teal);font-weight:700}
+  .item p{font-size:14px;color:var(--sub);margin-top:8px}
+  .tags{margin-top:10px;display:flex;gap:7px;flex-wrap:wrap}
+  .tags span{font-size:12px;font-weight:600;color:var(--teal-ink);background:#e7f4f2;border:1px solid #b9e0da;border-radius:999px;padding:3px 11px}
+  .tags span.risk{color:#8a5a12;background:#fdf3e7;border-color:#e7cfa0}
+  /* before/after 對照 */
+  .cmp{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:16px;box-shadow:0 1px 2px rgba(15,23,42,.04),0 16px 40px -32px rgba(11,54,66,.4)}
+  .cmp .ch{padding:15px 20px 13px;border-bottom:1px solid #eef2f4;display:flex;align-items:baseline;gap:10px}
+  .cmp .ch .nm{font-size:17px;font-weight:700;color:var(--teal-ink)}
+  .cmp .ch .ds{font-size:13px;color:var(--sub)}
+  .pair{display:grid;grid-template-columns:1fr 1fr}
+  .side{padding:16px}
+  .side+.side{border-left:1px solid #eef2f4}
+  .side .tag{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;border-radius:999px;padding:4px 12px;margin-bottom:11px}
+  .tag.b{background:#f1f4f6;color:#5c6a71}.tag.a{background:#e7f4f2;color:var(--teal-ink);border:1px solid #b9e0da}
+  .tag .n{width:8px;height:8px;border-radius:3px}
+  .frame{border:1px solid #e6ebee;border-radius:11px;overflow:hidden;background:#f7f9fa}
+  .frame img{display:block;width:100%}
+  .imp{padding:13px 20px 17px;background:linear-gradient(180deg,#fbfdfd,#f4f8f8);border-top:1px solid #eef2f4;font-size:13.5px;color:var(--sub);display:flex;gap:10px}
+  .imp svg{flex:0 0 auto;color:var(--teal);margin-top:3px}
+  .imp b{color:var(--teal-ink)}
+  /* 技術重點 */
+  .tech{background:#fff;border:1px solid var(--line);border-radius:16px;padding:8px 22px}
+  .tech .row{padding:14px 0;border-bottom:1px solid #f1f4f6;display:flex;gap:13px}
+  .tech .row:last-child{border-bottom:none}
+  .tech .ic{flex:0 0 auto;width:30px;height:30px;border-radius:9px;background:#e7f4f2;color:var(--teal);display:flex;align-items:center;justify-content:center}
+  .tech .tt{font-size:14.5px;font-weight:700;color:var(--teal-ink)}
+  .tech .td{font-size:13.5px;color:var(--sub);margin-top:2px}
+  .tech code{background:#f1f5f6;border-radius:5px;padding:1px 6px;color:var(--teal);font-weight:700;font-size:12.5px}
+  /* 部署 */
+  .deploy{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .dcard{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+  .dcard .h{font-size:13px;font-weight:700;color:var(--faint);display:flex;align-items:center;gap:7px}
+  .dcard .b{margin-top:9px;font-size:14px;color:var(--sub)}
+  .dcard .b div{padding:3px 0}
+  .dcard .b b{color:var(--teal-ink)}
+  .dcard a{color:var(--teal);font-weight:700;text-decoration:none;word-break:break-all}
+  .ok{color:var(--ok);font-weight:700}
+  footer{text-align:center;color:var(--faint);font-size:12.5px;padding:34px 20px 0}
+  @media(max-width:760px){
+    .hero h1{font-size:24px}
+    .stats{grid-template-columns:1fr 1fr;margin-top:-34px}
+    .pair{grid-template-columns:1fr}.side+.side{border-left:none;border-top:1px solid #eef2f4}
+    .deploy{grid-template-columns:1fr}
+    .item{grid-template-columns:1fr}.item .no{width:40px;height:40px}
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="brand">造境全屋定製 · ZAOJING</div>
+    <h1>工班端系統 <b>更新報告</b></h1>
+    <div class="date">2026 / 06 / 22　·　分支 feat/after-redesign-pm　·　已上線 mgmt.n-star.space</div>
+    <p>本次更新整合最新業務邏輯、為工班端 4 個頁面套用全新介面設計，並修復合約頁排版問題。以下為完整變更說明。</p>
+  </div>
+
+  <div class="wrap">
+    <div class="stats">
+      <div class="stat"><div class="v">3</div><div class="k">次提交 Commit</div></div>
+      <div class="stat"><div class="v">4</div><div class="k">頁面改版</div></div>
+      <div class="stat"><div class="v">8</div><div class="k">檔案調整</div></div>
+      <div class="stat"><div class="v ok">已上線</div><div class="k">正式環境</div></div>
+    </div>
+
+    <!-- 三件事 -->
+    <h2 class="sec">本次更新做了三件事</h2>
+    <div class="work">
+      <div class="item">
+        <div class="no">1</div>
+        <div>
+          <h3>整合最新業務邏輯</h3>
+          <div class="meta"><code>34670fa</code>　合併 codex 分支 · 51 檔變動</div>
+          <p>把工程協作流程的最新業務邏輯合併進來。原則是「<b>業務邏輯採用最新版、介面採用新設計</b>」，8 處衝突逐一確認，確保功能與資料正確無誤。</p>
+          <div class="tags"><span>業務邏輯更新</span><span>衝突已解</span><span>功能零回歸</span></div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="no">2</div>
+        <div>
+          <h3>工班端 4 頁介面全面改版</h3>
+          <div class="meta"><code>cfcb605</code>　8 檔 · +303 / −314 行 · 純介面層</div>
+          <p>公司設定、派工管理、驗收紀錄、工程報價合約 4 個頁面，套上墨綠品牌的全新介面：頂部品牌橫幅、關鍵數字摘要、清楚的資訊分區。<b>只改外觀，不動任何功能與資料邏輯</b>。</p>
+          <div class="tags"><span>墨綠品牌一致</span><span>手機優先</span><span>資訊層次重整</span><span>功能零變動</span></div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="no">3</div>
+        <div>
+          <h3>修復合約頁排版溢出</h3>
+          <div class="meta"><code>c9031c9</code>　globals.css · 4 行</div>
+          <p>合約文件因寬度用「整個螢幕寬」計算、未扣掉左側選單，導致右側內容被裁切。改為「<b>容器相對寬度</b>」後，桌機與手機皆完整顯示，列印版維持不變。</p>
+          <div class="tags"><span>排版修復</span><span>桌機 + 手機</span><span class="risk">列印版不受影響</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 前後對照 -->
+    <h2 class="sec">4 頁改版前後對照（實機截圖）</h2>
+
+    <div class="cmp">
+      <div class="ch"><span class="nm">公司設定</span><span class="ds">工班老闆維護公司資料、收款帳戶、可接工種與常用報價</span></div>
+      <div class="pair">
+        <div class="side"><span class="tag b"><span class="n" style="background:#9aa7ad"></span>改版前</span><div class="frame"><img src="img/before-settings.png"></div></div>
+        <div class="side"><span class="tag a"><span class="n" style="background:var(--teal)"></span>改版後</span><div class="frame"><img src="img/after-settings.png"></div></div>
+      </div>
+      <div class="imp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><div><b>改了什麼：</b>墨綠品牌橫幅 + 公司狀態與「成員數／可接工種／請款資料」一眼可見；資料改為清楚分區清單，去掉重複的卡中卡。</div></div>
+    </div>
+
+    <div class="cmp">
+      <div class="ch"><span class="nm">派工管理</span><span class="ds">安排師傅每日進場、查看本週／本月專案行事曆</span></div>
+      <div class="pair">
+        <div class="side"><span class="tag b"><span class="n" style="background:#9aa7ad"></span>改版前</span><div class="frame"><img src="img/before-schedule.png"></div></div>
+        <div class="side"><span class="tag a"><span class="n" style="background:var(--teal)"></span>改版後</span><div class="frame"><img src="img/after-schedule.png"></div></div>
+      </div>
+      <div class="imp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><div><b>改了什麼：</b>「尚未編排／已排／驗收提交／明日可派人員」四個數字變成頂部可點篩選頁籤，更醒目；行事曆功能維持原樣。</div></div>
+    </div>
+
+    <div class="cmp">
+      <div class="ch"><span class="nm">驗收紀錄</span><span class="ds">查看每個工項的驗收結果、需改善項目並重新送驗</span></div>
+      <div class="pair">
+        <div class="side"><span class="tag b"><span class="n" style="background:#9aa7ad"></span>改版前</span><div class="frame"><img src="img/before-inspections.png"></div></div>
+        <div class="side"><span class="tag a"><span class="n" style="background:var(--teal)"></span>改版後</span><div class="frame"><img src="img/after-inspections.png"></div></div>
+      </div>
+      <div class="imp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><div><b>改了什麼：</b>頂部清楚標示驗收狀態（通過／改善）；合約金額、工期、驗收人摘要化；每個工項的金額與回覆層次分明。</div></div>
+    </div>
+
+    <div class="cmp">
+      <div class="ch"><span class="nm">工程報價單 ＆ 合約確認</span><span class="ds">工班收到設計師詢價、確認單價與簽約</span></div>
+      <div class="pair">
+        <div class="side"><span class="tag b"><span class="n" style="background:#9aa7ad"></span>改版前</span><div class="frame"><img src="img/before-contracts.png"></div></div>
+        <div class="side"><span class="tag a"><span class="n" style="background:var(--teal)"></span>改版後（含排版修復）</span><div class="frame"><img src="img/after-contracts.png"></div></div>
+      </div>
+      <div class="imp"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M20 6 9 17l-5-5"/></svg><div><b>改了什麼：</b>頂部加上墨綠品牌橫幅與「已簽約」狀態、派工捷徑；<b>修復文件右側被裁切的排版問題</b>；正式合約文件本體維持原樣，確保可列印與法律完整性。</div></div>
+    </div>
+
+    <!-- 技術重點 -->
+    <h2 class="sec">技術重點</h2>
+    <div class="tech">
+      <div class="row"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div><div><div class="tt">共用設計系統，不重造輪子</div><div class="td">新增 11 個共用樣式類別（<code>zj-hero</code> / <code>zj-htabs</code> / <code>zj-pcard</code> 等），與既有 PM 工作台同源，4 個工班頁與整個系統視覺零漂移。</div></div></div>
+      <div class="row"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div><div><div class="tt">2970 行合約表單零碰</div><div class="td">最複雜的報價合約表單是業務核心，改版只動外層介面、完全不碰其內部邏輯，將線上風險降到最低。</div></div></div>
+      <div class="row"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg></div><div><div class="tt">排版 bug 根因：用螢幕寬而非容器寬</div><div class="td">固定側欄版面中用 <code>100vw</code> 算寬度會把側欄也算進去而溢出；改用容器相對的 <code>100%</code> + <code>max-width</code> 解決，是前端常見陷阱。</div></div></div>
+      <div class="row"><div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg></div><div><div class="tt">每頁實機驗證，桌機 + 手機</div><div class="td">改完每一頁都用真實帳號、真實資料、桌機與手機雙視窗實機檢視，型別檢查與正式建置全綠才上線。</div></div></div>
+    </div>
+
+    <!-- 部署 -->
+    <h2 class="sec">部署與驗證</h2>
+    <div class="deploy">
+      <div class="dcard">
+        <div class="h"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>正式環境</div>
+        <div class="b">
+          <div>網址：<a href="https://mgmt.n-star.space">mgmt.n-star.space</a></div>
+          <div>容器狀態：<b class="ok">running / healthy</b></div>
+          <div>映像檔：<b>已切換新版（hash 比對確認）</b></div>
+          <div>頁面回應：<b>合約頁正常、無排版溢出</b></div>
+        </div>
+      </div>
+      <div class="dcard">
+        <div class="h"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>業主預覽</div>
+        <div class="b">
+          <div>前後對照頁：<a href="https://fury1231.github.io/zaojing-ui-preview/contractor/">線上對照（4 頁）↗</a></div>
+          <div>內容：4 頁改版前後並排 + 白話說明</div>
+          <div>截圖：同帳號、同資料、同視窗實機抓取</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>造境全屋定製 · 北辰美學股份有限公司　|　工班端系統更新報告　|　2026/06/22</footer>
+
+</body>
+</html>
